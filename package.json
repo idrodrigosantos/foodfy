@@ -1,0 +1,31 @@
+{
+  "name": "foodfy",
+  "version": "1.0.0",
+  "description": "Site de receitas",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imsantosrodrigo/foodfy.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "nodejs"    
+  ],
+  "author": "Rodrigo Santos",
+  "bugs": {
+    "url": "https://github.com/imsantosrodrigo/foodfy/issues"
+  },
+  "homepage": "https://github.com/imsantosrodrigo/foodfy#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

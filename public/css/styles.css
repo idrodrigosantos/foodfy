@@ -92,6 +92,10 @@ section .recipes {
     gap: 20px;
 }
 
+.recipe {
+    cursor: pointer;
+}
+
 .recipe img {
     width: 300px;
     height: 140px;
@@ -149,66 +153,63 @@ section .text p {
     line-height: 28px;
 }
 
-/* Page Recipes */
+/* Page Receita */
 
-.recipe-image {
-    cursor: pointer;
+.recipe-page h2 {
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 20px;
 }
 
-/* Modal Page Recipes */
-
-.modal-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.modal {
-    background-color: #ffffff;
-    width: 660px;
-    height: 413px;
-    margin: 20vh auto;
-    position: relative;
-    border-radius: 16px;
-}
-
-.modal img {
-    width: 600px;
-    height: 200px;
-    margin: 30px 30px 0;
+.recipe-page img {
+    width: 940px;
+    height: 280px;
     border-radius: 15px;
 }
 
-.modal h1 {
-    font-weight: normal;
-    font-size: 24px;
+.recipe-page-title {
+    text-align: center;
+}
+
+.recipe-page-title h1 {
+    margin: 50px 0 4px;
+    font-size: 36px;
     color: #111111;
-    text-align: center;
-    margin: 20px 0 5px;
 }
 
-.modal h2 {
-    font-weight: normal;
-    font-size: 18px;
+.recipe-page-title p {
+    font-size: 20px;
     color: #777777;
-    text-align: center;
+    margin-bottom: 50px;
 }
 
-.modal p {
-    font-weight: normal;
-    font-size: 16px;
+.recipe-text {
+    font-size: 18px;
+    line-height: 28px;
+    color: #444444;
+}
+
+.recipe-page-item-title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+}
+
+.recipe-page-item-title p {
+    padding-top: 62px;
+}
+
+/* Button hidden in recipe */
+
+.button-style {
+    font-weight: bold;
+    font-size: 12px;
     color: #999999;
-    margin: 60px auto 0;
+    text-transform: uppercase;
     cursor: pointer;
-    text-align: center;
-    width: 120px;
+    width: 80px;
 }
 
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
+.hidden-recipe {
+    display: none;
 }
