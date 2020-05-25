@@ -52,6 +52,6 @@ localhost:5000
 * [Express](https://github.com/expressjs/express)
 * [Nunjucks](https://github.com/mozilla/nunjucks)
 
-## Dependências de desenvolvimento
+## Dependência de desenvolvimento
 
 * [Nodemon](https://github.com/remy/nodemon)
