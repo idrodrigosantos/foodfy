@@ -213,3 +213,23 @@ section .text p {
 .hidden-recipe {
     display: none;
 }
+
+/* Page Erro */
+
+.erro {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.erro h1 {
+    font-size: 68px;
+    line-height: 78px;
+    font-weight: bold;
+    color: black;
+}
+
+.erro p {
+    font-size: 20px;
+    line-height: 30px;
+    color: gray;
+}

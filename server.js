@@ -39,6 +39,11 @@ server.get('/sobre', function (req, res) {
     return res.render('sobre');
 });
 
+// Rota para Erro 404
+server.use(function (req, res) {
+    res.status(404).render('not-found');
+});
+
 // Inicia o servidor na porta 5000
 server.listen(5000, function () {
     console.log('Server is running.')
