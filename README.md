@@ -1,4 +1,4 @@
-# foodfy
+# Foodfy
 Site de receitas.
 
 ## Softwares necessários
