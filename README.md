@@ -3,41 +3,28 @@ Site de receitas.
 
 ## Softwares necessários
 
-* Editor de texto
+* Editor de código-fonte
 * Node.js
+* Git
 
 ## Instalação
 
-Para clonar o repositório em sua máquina execute no terminal o comando:
+```
+# Clone o repositório
+$ git clone https://github.com/imsantosrodrigo/foodfy.git
 
-``` 
-git clone https://github.com/imsantosrodrigo/foodfy.git
+# Acesse o diretório
+$ cd foodfy
+
+#Instale as dependências
+$ npm install
 ```
 
-Acesse a pasta:
+## Executando o sistema
 
-``` 
-cd foodfy
 ```
-
-Instale as dependências:
-
-``` 
-npm install
-```
-
-## Executando
-
-Para iniciar o servidor, use o comando:
-
-``` 
-npm start
-```
-
-No navegador acesse o endereço:
-
-``` 
-localhost:5000
+# Inicie o servidor
+$ npm start
 ```
 
 ## Tecnologias
@@ -50,8 +37,11 @@ localhost:5000
 ## Dependências
 
 * [Express](https://github.com/expressjs/express)
+* [method-override](https://github.com/expressjs/method-override)
 * [Nunjucks](https://github.com/mozilla/nunjucks)
 
-## Dependência de desenvolvimento
+## Dependências de desenvolvimento
 
+* [Browsersync](https://github.com/BrowserSync/browser-sync)
 * [Nodemon](https://github.com/remy/nodemon)
+* [npm-run-all](https://github.com/mysticatea/npm-run-all)
