@@ -1,0 +1,274 @@
+/* Global */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #6558C3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+/* Barra navegação */
+
+nav {
+    background-color: #111111;
+}
+
+nav .nav-image {
+    padding: 36.1px 0 30px 0;
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+.nav-image img {
+    width: 90.6px;
+    height: 26.9px;
+}
+
+/* Listagem receitas */
+
+section h2 {
+    margin: 50px 0 30px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+section .recipes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.recipe {
+    display: grid;
+    grid-template-columns: 172px 1fr;
+    gap: 20px;
+}
+
+.recipe-image img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+    border-radius: 8.57px;
+}
+
+.recipe-content .recipe-name {
+    font-weight: normal;
+    font-size: 18px;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+.recipe-content .recipe-chef {
+    font-weight: normal;
+    font-size: 14px;
+    color: #777777;
+    margin-bottom: 10px;
+}
+
+.recipe-content a {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Receita individual */
+
+.recipe-page-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.recipe-page-header h2 {
+    font-weight: Bold;
+    font-size: 24px;
+    color: #111111;
+    margin-top: 55px;
+}
+
+.recipe-page-header a, .recipe-page-buttons-action button, .button-edit-save button {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 9px 20px;
+    box-sizing: border-box;
+    width: auto;
+    height: 37px;
+    cursor: pointer;
+}
+
+.recipe-page-buttons-action {
+    margin-top: 60px;
+    margin-left: auto;
+}
+
+.recipe-page-buttons-action-edit button {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 9px 20px;
+    box-sizing: border-box;
+    width: auto;
+    height: 37px;
+    cursor: pointer;
+}
+
+/* Cadastro receita */
+
+.recipe-page .item label {
+    display: block;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #111111;
+}
+
+.recipe-page .item input {
+    box-sizing: border-box;
+    width: 940px;
+    height: 49px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 0 15px;
+    margin-top: 10px;
+}
+
+.recipe-page .item textarea {
+    box-sizing: border-box;
+    width: 940px;
+    height: 257px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    color: #111111;
+    line-height: 24px;
+}
+
+.recipe-page .item button {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Editar receita */
+
+.recipe-page-buttons-action form .button-delete {
+    background-color: #dc4747;
+}
+
+.button-edit-save {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.button-edit-save button {
+    margin-top: 10px;
+    width: auto;
+    margin-left: auto;
+}
+
+/* Footer */
+
+footer {
+    background-color: #eeeeee;
+    margin-top: 40px;
+    height: 62px;
+}
+
+footer p {
+    padding: 23px 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+}
+
+/* Mostra receita */
+
+.recipe-page h2 {
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 20px;
+}
+
+.recipe-page img {
+    width: 940px;
+    height: 280px;
+    border-radius: 15px;
+}
+
+.recipe-page-title {
+    text-align: center;
+}
+
+.recipe-page-title h1 {
+    margin: 50px 0 4px;
+    font-size: 36px;
+    color: #111111;
+}
+
+.recipe-page-title p {
+    font-size: 20px;
+    color: #777777;
+    margin-bottom: 50px;
+}
+
+.recipe-text {
+    font-size: 18px;
+    line-height: 28px;
+    color: #444444;
+}
+
+.recipe-page-item-title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+}
+
+.recipe-page-item-title p {
+    padding-top: 62px;
+}
+
+/* Botão esconder/mostrar itens da receita */
+
+.button-style {
+    font-weight: bold;
+    font-size: 12px;
+    color: #999999;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 80px;
+}
+
+.hidden-recipe {
+    display: none;
+}

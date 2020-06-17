@@ -1,0 +1,64 @@
+{% extends "layout-admin.njk" %}
+
+{% block head %}
+    <title>Foodfy - {{ recipe.title }}</title>
+{% endblock %}
+
+{% block content %}
+    <section class="recipe-page">
+        <div class="recipe-page-header">
+            <h2>Receita: {{ recipe.title }}</h2>
+
+            <div class="recipe-page-buttons-action">
+                <a href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
+            </div>
+        </div>
+
+        <img src="/img/recipes-big/{{recipe.image}}" alt="Imagem de {{ recipe.title }}">
+
+        <div class="recipe-page-title">
+            <h1>{{ recipe.title }}</h1>
+            <p>por {{ recipe.author }}</p>
+        </div>
+
+        <div class="recipe-page-ingredients">
+            <div class="recipe-page-item-title">
+                <h2>Ingredientes</h2>
+                <p class="button-style button-hidden-ingredients hidden">Esconder</p>
+            </div>
+            <div class="recipe-page-items-ingredients">
+                <ul>
+                    {% for item in recipe.ingredients %}
+                        <li class="recipe-text">{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="recipe-page-preparation">
+            <div class="recipe-page-item-title">
+                <h2>Modo de preparo</h2>
+                <p class="button-style button-hidden-preparation hidden">Esconder</p>
+            </div>
+            <div class="recipe-page-items-preparation">
+                <ol>
+                    {% for item in recipe.preparation%}
+                        <li class="recipe-text">{{ item }}</li>
+                    {% endfor %}
+                </div>
+            </ol>
+        </div>
+
+        <div class="recipe-page-info">
+            <div class="recipe-page-item-title">
+                <h2>Informações adicionais</h2>
+                <p class="button-style button-hidden-info hidden">Esconder</p>
+            </div>
+            <div class="recipe-page-items-info">
+                <p class="recipe-text">{{ recipe.information }}</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/show-hidden-itens.js"></script>
+{% endblock %}
