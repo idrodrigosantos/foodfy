@@ -1,4 +1,4 @@
-{% extends "layout-admin.njk" %}
+{% extends "layout-recipes.njk" %}
 
 {% block content %}
     <section>
@@ -8,11 +8,11 @@
             {% for recipe in recipes %}
                 <div class="recipe">
                     <div class="recipe-image">
-                        <img src="/img/recipes-small/{{recipe.image}}" alt="Imagem do prato {{ recipe.title }}">
+                        <img src="{{recipe.image}}" alt="Imagem do prato {{ recipe.title }}">
                     </div>
                     <div class="recipe-content">
                         <p class="recipe-name">{{ recipe.title }}</p>
-                        <p class="recipe-chef">por {{ recipe.author }}</p>
+                        <p class="recipe-chef">por {{ recipe.chef_name }}</p>
                         <a href="recipes/{{ recipe.id }}">Visualizar</a>
                     </div>
                 </div>

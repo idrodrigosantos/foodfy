@@ -7,16 +7,22 @@
         {% block head %}
             <title>Foodfy</title>
         {% endblock %}
-        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="/css/chefs.css">
     </head>
 
     <body>
         <nav>
-            <div class="nav-image">
-                <img src="/img/logo-white.png" alt="Logo do Foodfy">
+            <div class="nav-width">
+                <div class="nav-image">
+                    <img src="/img/logo-white.png" alt="Logo do Foodfy">
+                </div>
+
+                <div class="nav-links">
+                    <a href="/admin/recipes">Receitas</a>
+                    <a href="/admin/chefs" class="link-active">Chefs</a>
+                </div>
             </div>
         </nav>
-
         <main>
             {% block content %}{% endblock %}
         </main>

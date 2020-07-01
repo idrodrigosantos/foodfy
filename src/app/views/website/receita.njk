@@ -6,11 +6,11 @@
 
 {% block content %}
     <section class="recipe-page">
-        <img src="/img/recipes-big/{{recipe.image}}" alt="Imagem de {{ recipe.title }}">
+        <img src="{{recipe.image}}" alt="Imagem de {{ recipe.title }}">
 
         <div class="recipe-page-title">
             <h1>{{ recipe.title }}</h1>
-            <p>por {{ recipe.author }}</p>
+            <p>por {{ recipe.chef_name }}</p>
         </div>
 
         <div class="recipe-page-ingredients">

@@ -1,4 +1,4 @@
-{% extends "layout-admin.njk" %}
+{% extends "layout-recipes.njk" %}
 
 {% block head %}
     <title>Foodfy - Editar receita</title>
@@ -26,7 +26,7 @@
 
             <input type="hidden" name="id" value="{{ recipe.id }}">
 
-            {% include "admin/fields.njk" %}
+            {% include "admin/recipes/fields.njk" %}
         </form>
 
     </section>

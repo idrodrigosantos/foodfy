@@ -17,11 +17,14 @@
 
         <article class="recipes">
             {% for recipe in recipes %}
-                <div class="recipe">
-                    <img src="/img/recipes-small/{{recipe.image}}" alt="Imagem do prato {{ recipe.title }}">
-                    <p class="recipe-name">{{ recipe.title }}</p>
-                    <p class="recipe-chef">por {{ recipe.author }}</p>
-                </div>
+                {% if loop.index <= 6 %}
+                    <div class="recipe">
+                        <span class="recipe-id">{{recipe.id}}</span>
+                        <img src="{{recipe.image}}" alt="Imagem do prato {{ recipe.title }}">
+                        <p class="recipe-name">{{ recipe.title }}</p>
+                        <p class="recipe-chef">por {{ recipe.chef_name }}</p>
+                    </div>
+                {% endif %}
             {% endfor %}
         </article>
     </section>

@@ -1,0 +1,21 @@
+{% extends "layout-chefs.njk" %}
+
+{% block head %}
+    <title>Foodfy - Cadastro chef</title>
+{% endblock %}
+
+{% block content %}
+    <section class="chef-page">
+        <form method="POST" action="/admin/chefs">
+            <div class="chef-page-header">
+                <h2>Criando chef</h2>
+
+                <div class="chef-page-buttons-action">
+                    <button type="submit">Salvar chef</button>
+                </div>
+            </div>
+
+            {% include "admin/chefs/fields.njk" %}
+        </form>
+    </section>
+{% endblock %}

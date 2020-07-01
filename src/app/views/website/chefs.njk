@@ -1,0 +1,29 @@
+{% extends "layout-website.njk" %}
+
+{% block content %}
+    <section>
+        <article class="chefs">
+            {% for chef in chefs %}
+                <div class="chef">
+                    <div class="chef-image">
+                        <img src="{{chef.avatar_url}}" alt="Chef {{ chef.name }}">
+                    </div>
+                    <div class="chef-content">
+                        <p class="chef-name">{{ chef.name }}</p>
+                        <div class="chef-recipes-number">
+                            {% if chef.total_recipes == 0 %}
+                                <p>Sem receita</p>
+                            {% elif chef.total_recipes > 1 %}
+                                <p>{{ chef.total_recipes }} receitas</p>
+                            {% else %}
+                                <p>{{ chef.total_recipes }} receita</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </article>
+    </section>
+
+    <script src="/js/scripts.js"></script>
+{% endblock %}

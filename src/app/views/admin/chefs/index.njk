@@ -1,0 +1,23 @@
+{% extends "layout-chefs.njk" %}
+
+{% block content %}
+    <section>
+        <h2>Gerenciar chefs</h2>
+
+        <article class="chefs">
+            {% for chef in chefs %}
+                <div class="chef">
+                    <div class="chef-image">
+                        <img src="{{chef.avatar_url}}" alt="Chef {{ chef.name }}">
+                    </div>
+                    <div class="chef-content">
+                        <p class="chef-name">{{ chef.name }}</p>
+                        <a href="chefs/{{ chef.id }}">Visualizar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </article>
+    </section>
+
+    <script src="/js/scripts.js"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "layout-chefs.njk" %}
+
+{% block head %}
+    <title>Foodfy - {{ chef.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <section class="chef-page">
+        <div class="chef-page-header">
+            <h2>Chef: {{ chef.name }}</h2>
+
+            <div class="chef-page-buttons-action">
+                <a href="/admin/chefs/{{chef.id}}/edit">Editar chef</a>
+            </div>
+        </div>
+
+        <div class="chef-page-title">
+            <img src="{{chef.avatar_url}}" alt="Chef {{ chef.name }}">
+            <h1>{{ chef.name }}</h1>
+            <div class="chef-number-recipes">
+                {% if chef.total_recipes == 0 %}
+                    <p>Sem receita</p>
+                {% elif chef.total_recipes > 1 %}
+                    <p>{{ chef.total_recipes }} receitas</p>
+                {% else %}
+                    <p>{{ chef.total_recipes }}receita</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <h2>Receitas</h2>
+        <article class="chef-recipes">
+            {% for recipe in recipes %}
+                <div class="chef-recipe">
+                    <div class="chef-recipe-image">
+                        <img src="{{ recipe.image }}" alt="Imagem do prato {{ recipe.title }}">
+                    </div>
+                    <div class="chef-recipe-content">
+                        <p class="chef-recipe-name">{{ recipe.title }}</p>
+                        <p class="name-chef">por {{ chef.name }}</p>
+                        <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </article>
+    </section>
+{% endblock %}
