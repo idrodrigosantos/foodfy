@@ -5,11 +5,12 @@ Site de receitas.
 
 * Editor de código-fonte
 * Node.js
+* PostgreSQL
 * Git
 
 ## Instalação
 
-```
+```bash
 # Clone o repositório
 $ git clone https://github.com/imsantosrodrigo/foodfy.git
 
@@ -20,9 +21,24 @@ $ cd foodfy
 $ npm install
 ```
 
+## Criação do banco de dados
+No PostgreSQL execute o arquivo `foodfy.sql` em `database/foodfy.sql` para criar o banco de dados, tabelas e popular.
+
+Acesse o arquivo `db.js` em `src/config/db.js` e configure o usuário e senha de conexão com o PostgreSQL.
+
+```js
+module.exports = new Pool({
+    // user: 'Usuário PostgreSQL',
+    // password: 'Senha PostgreSQL',    
+    host: 'localhost',
+    port: 5432,
+    database: 'foodfy'
+});
+```
+
 ## Executando o sistema
 
-```
+```bash
 # Inicie o servidor
 $ npm start
 ```
@@ -33,12 +49,14 @@ $ npm start
 * CSS
 * JavaScript
 * Node.js
+* PostgreSQL
 
 ## Dependências
 
 * [Express](https://github.com/expressjs/express)
 * [method-override](https://github.com/expressjs/method-override)
 * [Nunjucks](https://github.com/mozilla/nunjucks)
+* [node-postgres](https://github.com/brianc/node-postgres)
 
 ## Dependências de desenvolvimento
 
