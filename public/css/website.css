@@ -21,7 +21,7 @@ main {
 
 nav {
     display: grid;
-    grid-template-columns: 213.3px 1fr;
+    grid-template-columns: 213.3px 1fr 1fr;
 }
 
 nav .nav-image {
@@ -43,6 +43,34 @@ nav .nav-links {
     text-decoration: none;
     color: #111111;
     font-weight: normal;
+}
+
+.nav-search {
+    margin-left: auto;
+}
+
+.nav-search input {
+    box-sizing: border-box;
+    width: 246px;
+    height: 37px;
+    padding: 0 15px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    margin-top: 28px;
+}
+
+.nav-search button {
+    margin-left: 8px;
+    width: 91px;
+    height: 37px;
+    background-color: #6558c3;
+    border-radius: 4px;
+    padding: 9px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 header {
@@ -94,6 +122,10 @@ section .recipes {
 
 .recipe {
     cursor: pointer;
+}
+
+.recipe .recipe-id {
+    display: none;
 }
 
 .recipe img {
@@ -212,4 +244,77 @@ section .text p {
 
 .hidden-recipe {
     display: none;
+}
+
+/* Listagem chefs */
+
+section h2 {
+    margin: 50px 0 30px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+section .chefs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.chef {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+}
+
+.chef-image img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.chef-content .chef-name {
+    font-weight: normal;
+    font-size: 18px;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+.chef-content .chef-chef {
+    font-weight: normal;
+    font-size: 14px;
+    color: #777777;
+    margin-bottom: 10px;
+}
+
+.chef-content a {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.chef-recipes-number {
+    font-size: 14px;
+    color: #666666;
+}
+
+/* Pagination */
+
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagination a, .pagination span {
+    color: #666666;
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover {
+    filter: brightness(0.3);
+    border-bottom: 1px solid #666666;
 }

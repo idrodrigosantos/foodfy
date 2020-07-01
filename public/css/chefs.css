@@ -27,10 +27,16 @@ nav {
     background-color: #111111;
 }
 
-nav .nav-image {
-    padding: 36.1px 0 30px 0;
+.nav-width {
     max-width: 940px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 213.3px 1fr;
+    background-color: #111111;
+}
+
+nav .nav-image {
+    padding: 36.1px 0 30px 0;
 }
 
 .nav-image img {
@@ -38,7 +44,25 @@ nav .nav-image {
     height: 26.9px;
 }
 
-/* Listagem receitas */
+nav .nav-links {
+    padding: 38px 0 36px 0;
+}
+
+.nav-links a {
+    padding-right: 50px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #999999;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+nav .nav-links a.link-active {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Listagem chefs */
 
 section h2 {
     margin: 50px 0 30px;
@@ -47,80 +71,123 @@ section h2 {
     color: #111111;
 }
 
-section .recipes {
+section .chefs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 40px;
 }
 
-.recipe {
+.chef {
     display: grid;
-    grid-template-columns: 172px 1fr;
+    grid-template-columns: 64px 1fr;
     gap: 20px;
 }
 
-.recipe-image img {
-    width: 100%;
-    height: 100%;
+.chef-image img {
+    width: 64px;
+    height: 64px;
     margin-bottom: 20px;
-    border-radius: 8.57px;
+    border-radius: 50%;
 }
 
-.recipe-content .recipe-name {
+.chef-content .chef-name {
     font-weight: normal;
     font-size: 18px;
     color: #111111;
     margin-bottom: 5px;
 }
 
-.recipe-content .recipe-chef {
+.chef-content .chef-chef {
     font-weight: normal;
     font-size: 14px;
     color: #777777;
     margin-bottom: 10px;
 }
 
-.recipe-content a {
+.chef-content a {
     font-weight: bold;
     font-size: 14px;
     color: var(--primary-color);
     text-decoration: none;
 }
 
-/* Receita individual */
+/* Show chef */
 
-.recipe-page-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.recipe-page-header h2 {
+.chef-page h2 {
     font-weight: Bold;
     font-size: 24px;
     color: #111111;
     margin-top: 55px;
 }
 
-.recipe-page-header a, .recipe-page-buttons-action button, .button-edit-save button {
-    background-color: var(--primary-color);
-    border-radius: 4px;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 9px 20px;
-    box-sizing: border-box;
-    width: auto;
-    height: 37px;
-    cursor: pointer;
+.chef-page-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.recipe-page-buttons-action {
+.chef-page-title {
+    text-align: center;
+}
+
+.chef-page-title img {
+    width: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.chef-page-title h1 {
+    margin: 50px 0 4px;
+    font-size: 36px;
+    color: #111111;
+}
+
+.chef-page-title p {
+    font-size: 20px;
+    color: #777777;
+    margin-bottom: 50px;
+}
+
+.chef-recipes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.chef-recipe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chef-recipe-image img {
+    width: 172px;
+    height: 80px;
+    border-radius: 8.57px;
+}
+
+.chef-recipe-name {
+    font-size: 18px;
+    color: #111111;
+}
+
+.name-chef {
+    font-size: 14px;
+    color: #777777;
+}
+
+.chef-recipe-content a {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.chef-page-buttons-action {
     margin-top: 60px;
     margin-left: auto;
 }
 
-.recipe-page-buttons-action-edit button {
+.chef-page-buttons-action button, .chef-page-buttons-action a, .button-edit-save button {
     background-color: var(--primary-color);
     border-radius: 4px;
     text-decoration: none;
@@ -134,9 +201,9 @@ section .recipes {
     cursor: pointer;
 }
 
-/* Cadastro receita */
+/* Cadastro chef */
 
-.recipe-page .item label {
+.chef-page .item label {
     display: block;
     margin-top: 30px;
     font-weight: bold;
@@ -144,7 +211,7 @@ section .recipes {
     color: #111111;
 }
 
-.recipe-page .item input {
+.chef-page .item input {
     box-sizing: border-box;
     width: 940px;
     height: 49px;
@@ -155,7 +222,7 @@ section .recipes {
     margin-top: 10px;
 }
 
-.recipe-page .item textarea {
+.chef-page .item textarea {
     box-sizing: border-box;
     width: 940px;
     height: 257px;
@@ -171,7 +238,7 @@ section .recipes {
     line-height: 24px;
 }
 
-.recipe-page .item button {
+.chef-page .item button {
     margin-top: 15px;
     font-weight: bold;
     font-size: 16px;
@@ -179,9 +246,9 @@ section .recipes {
     cursor: pointer;
 }
 
-/* Editar receita */
+/* Editar chef */
 
-.recipe-page-buttons-action form .button-delete {
+.chef-page-buttons-action form .button-delete {
     background-color: #dc4747;
 }
 
@@ -210,65 +277,4 @@ footer p {
     font-size: 14px;
     color: #999999;
     text-align: center;
-}
-
-/* Mostra receita */
-
-.recipe-page h2 {
-    font-size: 24px;
-    color: #111111;
-    margin-bottom: 20px;
-}
-
-.recipe-page img {
-    width: 940px;
-    height: 280px;
-    border-radius: 15px;
-}
-
-.recipe-page-title {
-    text-align: center;
-}
-
-.recipe-page-title h1 {
-    margin: 50px 0 4px;
-    font-size: 36px;
-    color: #111111;
-}
-
-.recipe-page-title p {
-    font-size: 20px;
-    color: #777777;
-    margin-bottom: 50px;
-}
-
-.recipe-text {
-    font-size: 18px;
-    line-height: 28px;
-    color: #444444;
-}
-
-.recipe-page-item-title {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 8px;
-}
-
-.recipe-page-item-title p {
-    padding-top: 62px;
-}
-
-/* Botão esconder/mostrar itens da receita */
-
-.button-style {
-    font-weight: bold;
-    font-size: 12px;
-    color: #999999;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 80px;
-}
-
-.hidden-recipe {
-    display: none;
 }
