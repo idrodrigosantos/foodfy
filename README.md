@@ -17,7 +17,7 @@ $ git clone https://github.com/imsantosrodrigo/foodfy.git
 # Acesse o diretório
 $ cd foodfy
 
-#Instale as dependências
+# Instale as dependências
 $ npm install
 ```
 
