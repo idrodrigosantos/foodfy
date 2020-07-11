@@ -2,7 +2,7 @@
 const Chef = require('../models/Chef');
 
 module.exports = {
-    // // Página inicial do admin
+    // Página inicial do admin
     index(req, res) {
         Chef.index(function (chefs) {
             return res.render('admin/chefs/index', { chefs });
