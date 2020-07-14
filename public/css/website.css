@@ -308,7 +308,8 @@ section .chefs {
     text-align: center;
 }
 
-.pagination a, .pagination span {
+.pagination a,
+.pagination span {
     color: #666666;
     text-decoration: none;
     margin-right: 16px;

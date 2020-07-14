@@ -125,7 +125,9 @@ section .recipes {
     margin-top: 55px;
 }
 
-.recipe-page-header a, .recipe-page-buttons-action button, .button-edit-save button {
+.recipe-page-header a,
+.recipe-page-buttons-action button,
+.button-edit-save button {
     background-color: var(--primary-color);
     border-radius: 4px;
     text-decoration: none;

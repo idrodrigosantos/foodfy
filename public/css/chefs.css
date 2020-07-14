@@ -187,7 +187,9 @@ section .chefs {
     margin-left: auto;
 }
 
-.chef-page-buttons-action button, .chef-page-buttons-action a, .button-edit-save button {
+.chef-page-buttons-action button,
+.chef-page-buttons-action a,
+.button-edit-save button {
     background-color: var(--primary-color);
     border-radius: 4px;
     text-decoration: none;
