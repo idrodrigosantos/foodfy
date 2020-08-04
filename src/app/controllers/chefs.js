@@ -71,7 +71,7 @@ module.exports = {
 
         Chef.checkChefHasRecipe(id, function (count) {
             if (count > 0) {
-                return res.send("Chef que possue receita não pode ser deletado.");
+                return res.send("Chef que possui receita não pode ser deletado.");
             } else {
                 Chef.delete(req.body.id, function () {
                     return res.redirect('/admin/chefs');

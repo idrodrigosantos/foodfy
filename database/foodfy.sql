@@ -21,11 +21,11 @@ CREATE TABLE recipes (
 INSERT INTO chefs (name, avatar_url, created_at) VALUES
 ('Jorge Relato', 'https://source.unsplash.com/6YQmQgcQ0VA', '2020-06-29 00:00:00'),
 ('Fabiana Melo', 'https://source.unsplash.com/xe68QiMaDrQ', '2020-06-29 00:00:00'),
-('Vania Steroski', 'https://source.unsplash.com/ff5K3-kYPHA', '2020-06-29 00:00:00'),
+('Vânia Steroski', 'https://source.unsplash.com/ff5K3-kYPHA', '2020-06-29 00:00:00'),
 ('Juliano Vieira', 'https://source.unsplash.com/WNoLnJo7tS8', '2020-06-29 00:00:00'),
 ('Júlia Kinoto', 'https://source.unsplash.com/tNCH0sKSZbA', '2020-06-29 00:00:00'),
-('Ricardo Golvea', 'https://source.unsplash.com/2t-ydzD385M', '2020-06-29 00:00:00'),
-( 'Alberto Silva', 'https://source.unsplash.com/WNoLnJo7tS8', '2020-06-30 00:00:00');
+('Ricardo Gouveia', 'https://source.unsplash.com/2t-ydzD385M', '2020-06-29 00:00:00'),
+('Alberto Silva', 'https://source.unsplash.com/WNoLnJo7tS8', '2020-06-30 00:00:00');
 
 INSERT INTO recipes (title, image, ingredients, preparation, information, created_at, chef_id) VALUES
 ('Asinhas de frango ao barbecue', 'https://source.unsplash.com/zNqArwc7Hh4', '{"12 encontros de asinha de galinha, temperados a gosto","2 colheres de sopa de farinha de trigo","1/2 xícara (chá) de óleo","1 xícara de molho barbecue"}', '{"Em uma tigela coloque o encontro de asinha de galinha e polvilhe a farinha de trigo e misture com as mãos.","Em uma frigideira ou assador coloque o óleo quando estiver quente frite até ficarem douradas.","Para servir fica bonito com salada, ou abuse da criatividade."}', 'Informações adicionais', '2020-06-29 00:00:00', 3),
