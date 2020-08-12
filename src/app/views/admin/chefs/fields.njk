@@ -5,5 +5,24 @@
 
 <div class="item">
     <label>Avatar</label>
-    <input type="url" name="avatar_url" value="{{ chef.avatar_url }}">
+    <div class="input-file_container">
+        <input type="file" name="avatar" id="#avatar-input" multiple="multiple" accept="image/*" data-limit="1" onchange="PhotosUpload.handleFileInput(event)">
+
+        <label for="#avatar-input" class="button" id="button-upload-image">Enviar avatar</label>
+
+        <div id="photo-preview" class="chefs">
+            {% if file %}
+                <div class="photo" id="{{file.id}}">
+                    <img class="photo chefs" src="{{file.src}}" alt="{{file.name}}">
+
+                    <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                </div>
+                <input type="hidden" name="removed_files">
+
+                <input type="hidden" name="file_id" value="{{file.id}}">
+            {% endif %}
+        </div>
+    </div>
 </div>
+
+<script src="/js/upload-image.js"></script>

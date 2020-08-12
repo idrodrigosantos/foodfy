@@ -15,15 +15,16 @@
         </div>
 
         <div class="chef-page-title">
-            <img src="{{chef.avatar_url}}" alt="Chef {{ chef.name }}">
+            <img src="{{file.src}}" alt="Imagem do chef {{chef.chef}}" id="chef">
+            
             <h1>{{ chef.name }}</h1>
             <div class="chef-number-recipes">
                 {% if chef.total_recipes == 0 %}
                     <p>Sem receita</p>
-                {% elif chef.total_recipes > 1 %}
-                    <p>{{ chef.total_recipes }} receitas</p>
+                {% elif chef.total_recipes == 1 %}
+                    <p>{{ chef.total_recipes }} receita</p>
                 {% else %}
-                    <p>{{ chef.total_recipes }}receita</p>
+                    <p>{{ chef.total_recipes }} receitas</p>
                 {% endif %}
             </div>
         </div>

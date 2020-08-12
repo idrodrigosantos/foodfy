@@ -9,13 +9,17 @@
         <article class="recipes">
             {% for recipe in recipes %}
                 <div class="recipe">
-                    <span class="recipe-id">{{recipe.id}}</span>
-                    <img src="{{recipe.image}}" alt="Imagem do prato {{ recipe.title }}">
+                    <span class="recipe-id">{{ recipe.id }}</span>
+
+                    <img src="{{ recipe.file_path }}" alt="Imagem do prato {{ recipe.title }}">
+
                     <p class="recipe-name">{{ recipe.title }}</p>
+
                     <p class="recipe-chef">por {{ recipe.chef_name }}</p>
                 </div>
             {% endfor %}
         </article>
     </section>
-    <script src="/js/scripts.js"></script>
+
+    <script src="/js/redirect-for-recipe.js"></script>
 {% endblock %}

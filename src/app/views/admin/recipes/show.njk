@@ -14,7 +14,20 @@
             </div>
         </div>
 
-        <img src="{{recipe.image}}" alt="Imagem de {{ recipe.title }}">
+        <div class="gallery">
+            <div class="highlight">
+                {% if not files[0] %}
+                    <img src="http://placehold.it/500x500?text=RECEITA SEM FOTOS">
+                {% else %}
+                    <img src="{{files[0].src}}" alt="{{files[0].name}}">
+                {% endif %}
+            </div>
+            <div class="gallery-preview">
+                {% for image in files %}
+                    <img src="{{image.src}}" alt="image.name" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+                {% endfor %}
+            </div>
+        </div>
 
         <div class="recipe-page-title">
             <h1>{{ recipe.title }}</h1>
@@ -60,5 +73,6 @@
         </div>
     </section>
 
-    <script src="/js/show-hidden-itens.js"></script>
+    <script src="/js/show-hidden-itens-recipe.js"></script>
+    <script src="/js/carousel-images-recipe.js"></script>
 {% endblock %}

@@ -1,12 +1,16 @@
 {% extends "layout-website.njk" %}
 
+{% block head %}
+    <title>Foodfy - Chefs</title>
+{% endblock %}
+
 {% block content %}
     <section>
         <article class="chefs">
             {% for chef in chefs %}
                 <div class="chef">
                     <div class="chef-image">
-                        <img src="{{chef.avatar_url}}" alt="Chef {{ chef.name }}">
+                        <img src="{{ chef.file_src }}" alt="Chef {{ chef.name }}">
                     </div>
                     <div class="chef-content">
                         <p class="chef-name">{{ chef.name }}</p>
@@ -24,6 +28,4 @@
             {% endfor %}
         </article>
     </section>
-
-    <script src="/js/scripts.js"></script>
 {% endblock %}
