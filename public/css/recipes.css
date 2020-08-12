@@ -309,3 +309,161 @@ footer p {
 .hidden-recipe {
     display: none;
 }
+
+/* Paginação */
+
+.pagination {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.pagination a,
+.pagination span {
+    text-decoration: none;
+}
+
+.pagination .active {
+    font-weight: bold;
+}
+
+.pagination a+a {
+    margin-left: 16px;
+}
+
+.pagination span {
+    margin: 0px 16px;
+}
+
+/* Upload image */
+
+.input-file_container .button {
+    background-color: #6558C3;
+    border-radius: 4px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Roboto', 'Bold';
+    float: right;
+    cursor: pointer;
+}
+
+/* Botão seleciona imagem */
+
+.input-file_container {
+    display: grid;
+}
+
+.input-file_container input[type="file"] {
+    display: none;
+}
+
+.input-file_container label.button {
+    float: left;
+    width: 100px;
+}
+
+.input-file_container.recipes {
+    display: grid;
+    height: 150px;
+    grid-template-columns: 150px 1fr;
+    column-gap: 12px;
+}
+
+.input-file_container.recipes label {
+    border: 1px solid #ddd;
+    height: 100%;
+    width: 100%;
+    border-radius: 3.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.input-file_container.recipes label i {
+    font-size: 42px;
+    color: #999999;
+}
+
+#photo-preview.chefs {
+    display: grid;
+    grid-template-columns: 150px;
+    align-items: center;
+}
+
+#photo-preview.recipes {
+    display: grid;
+    grid-template-columns: repeat(6, 150px);
+    height: 150px;
+    align-items: center;
+    gap: 12px;
+}
+
+#photo-preview div.photo {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#photo-preview.chefs div.photo {
+    margin-top: 32px;
+}
+
+#photo-preview div.photo img {
+    margin-top: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 3.5px;
+    object-fit: cover;
+}
+
+#photo-preview div.photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: red;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 500%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+#photo-preview div.photo i:hover {
+    opacity: 1;
+}
+
+/* Galeria mostra imagem */
+
+.gallery-preview {
+    width: 100%;
+    height: 55px;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.gallery-preview img,
+#recipe-description .gallery .gallery-preview img {
+    margin: 4px;
+    height: 50px;
+    width: 50px;
+    border-radius: 3.5px;
+    float: right;
+    object-fit: cover;
+    opacity: 0.5;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: opacity 200ms;
+}
+
+.gallery-preview img.active,
+#recipe-description .gallery .gallery-preview img.active {
+    opacity: 1;
+}

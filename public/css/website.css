@@ -133,6 +133,7 @@ section .recipes {
     height: 140px;
     margin: 20px 0;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .recipe .recipe-name {
@@ -301,7 +302,7 @@ section .chefs {
     color: #666666;
 }
 
-/* Pagination */
+/* Paginação */
 
 .pagination {
     margin-top: 30px;
@@ -318,4 +319,45 @@ section .chefs {
 .pagination a:hover {
     filter: brightness(0.3);
     border-bottom: 1px solid #666666;
+}
+
+.pagination .active {
+    font-weight: bold;
+}
+
+.pagination a+a {
+    margin-left: 16px;
+}
+
+.pagination span {
+    margin: 0px 16px;
+}
+
+/* Galeria mostra imagem */
+
+.gallery-preview {
+    width: 100%;
+    height: 55px;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.gallery-preview img,
+#recipe-description .gallery .gallery-preview img {
+    margin: 4px;
+    height: 50px;
+    width: 50px;
+    border-radius: 3.5px;
+    float: right;
+    object-fit: cover;
+    opacity: 0.5;
+    border: 1px solid #ddd;
+    cursor: pointer;
+
+    transition: opacity 200ms;
+}
+
+.gallery-preview img.active,
+#recipe-description .gallery .gallery-preview img.active {
+    opacity: 1;
 }
