@@ -1,4 +1,4 @@
-// Procura receitas
+// Redireciona para a receita
 const recipes = document.querySelectorAll('.recipe');
 const idRecipes = document.querySelectorAll('.recipe-id');
 

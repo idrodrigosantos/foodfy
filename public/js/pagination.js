@@ -1,13 +1,12 @@
 // Paginação
-function paginate(selectedPage, totalPages) {
+function paginate(totalPages, selectedPage) {
     let pages = [], oldPage;
 
     for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
         const firstAndLastPage = currentPage == 1 || currentPage == totalPages;
-        const pagesBeforeSelectedPages = currentPage >= selectedPage - 2;
-        const pagesAfterSelectedPages = currentPage <= selectedPage + 2;
-
-        if (firstAndLastPage || pagesBeforeSelectedPages && pagesAfterSelectedPages) {
+        const pagesAfterSelectedPage = currentPage <= selectedPage + 1;
+        const pagesBeforeSelectedPage = currentPage >= selectedPage - 1;
+        if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
             if (oldPage && currentPage - oldPage > 2) {
                 pages.push('...');
             }
@@ -25,19 +24,23 @@ function paginate(selectedPage, totalPages) {
     return pages;
 }
 
-function createPagination(pagination) {
-    // + transforma a string em número
-    const page = +pagination.dataset.page;
-    const total = +pagination.dataset.total;
-    const pages = paginate(page, total);
+function createPagination() {
+    const filter = pagination.dataset.filter;
+    const totalPages = +pagination.dataset.total;
+    const selectedPage = +pagination.dataset.page;
+    const pages = paginate(totalPages, selectedPage);
 
     let elements = '';
 
     for (let page of pages) {
         if (String(page).includes('...')) {
-            elements += `<span>${page}</span>`;
+            elements += `<span>...</span>`;
         } else {
-            elements += `<a href="?page=${page}">${page}</a>`;
+            if (!filter) {
+                elements += `<a href="?page=${page}" ${(selectedPage == page ? 'class="active"' : '')}>${page}</a>`;
+            } else {
+                elements += `<a href="?filter=${filter}&page=${page}" ${(selectedPage == page ? 'class="active"' : '')}>${page}</a>`;
+            }
         }
     }
 
@@ -47,5 +50,5 @@ function createPagination(pagination) {
 const pagination = document.querySelector('.pagination');
 
 if (pagination) {
-    createPagination(pagination);
+    createPagination();
 }
