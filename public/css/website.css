@@ -353,11 +353,14 @@ section .chefs {
     opacity: 0.5;
     border: 1px solid #ddd;
     cursor: pointer;
-
     transition: opacity 200ms;
 }
 
 .gallery-preview img.active,
 #recipe-description .gallery .gallery-preview img.active {
     opacity: 1;
+}
+
+.highlight img {
+    object-fit: cover;
 }

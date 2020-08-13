@@ -336,24 +336,6 @@ footer p {
 
 /* Upload image */
 
-.input-file_container .button {
-    background-color: #6558C3;
-    border-radius: 4px;
-    padding: 8px 16px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Roboto', 'Bold';
-    float: right;
-    cursor: pointer;
-}
-
-/* Botão seleciona imagem */
-
-.input-file_container {
-    display: grid;
-}
-
 .input-file_container input[type="file"] {
     display: none;
 }
@@ -365,9 +347,11 @@ footer p {
 
 .input-file_container.recipes {
     display: grid;
-    height: 150px;
+    height: 149px;
+    width: 149px;
     grid-template-columns: 150px 1fr;
-    column-gap: 12px;
+    gap: 8px;
+    margin-top: 10.5px;
 }
 
 .input-file_container.recipes label {
@@ -379,6 +363,7 @@ footer p {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-top: 0;
 }
 
 .input-file_container.recipes label i {
@@ -394,10 +379,10 @@ footer p {
 
 #photo-preview.recipes {
     display: grid;
-    grid-template-columns: repeat(6, 150px);
+    grid-template-columns: repeat(5, 150px);
     height: 150px;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 #photo-preview div.photo {
@@ -466,4 +451,8 @@ footer p {
 .gallery-preview img.active,
 #recipe-description .gallery .gallery-preview img.active {
     opacity: 1;
+}
+
+.highlight img {
+    object-fit: cover;
 }
