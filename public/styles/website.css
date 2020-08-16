@@ -311,14 +311,14 @@ section .chefs {
 
 .pagination a,
 .pagination span {
-    color: #666666;
+    color: #6558c3;
     text-decoration: none;
     margin-right: 16px;
 }
 
 .pagination a:hover {
     filter: brightness(0.3);
-    border-bottom: 1px solid #666666;
+    border-bottom: 1px solid #6558c3;
 }
 
 .pagination .active {

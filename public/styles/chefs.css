@@ -159,6 +159,12 @@ section .chefs {
     gap: 20px;
 }
 
+.chef-recipe-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 .chef-recipe-image img {
     width: 172px;
     height: 80px;

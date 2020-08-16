@@ -88,6 +88,7 @@ section .recipes {
     height: 80px;
     margin-bottom: 20px;
     border-radius: 8.57px;
+    object-fit: cover;
 }
 
 .recipe-content .recipe-name {
@@ -313,13 +314,20 @@ footer p {
 /* Paginação */
 
 .pagination {
-    margin-top: 32px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .pagination a,
 .pagination span {
+    color: #6558c3;
     text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover {
+    filter: brightness(0.3);
+    border-bottom: 1px solid #6558c3;
 }
 
 .pagination .active {
