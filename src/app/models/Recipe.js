@@ -18,17 +18,15 @@ module.exports = {
             title, 
             ingredients, 
             preparation, 
-            information, 
-            created_at, 
+            information,
             chef_id
-        ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
+        ) VALUES ($1, $2, $3, $4, $5) RETURNING id`;
 
         const values = [
             data.title,
             data.ingredients,
             data.preparation,
             data.information,
-            date(Date.now()).iso,
             data.chef_id
         ];
 
