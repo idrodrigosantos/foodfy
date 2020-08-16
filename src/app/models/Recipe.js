@@ -110,6 +110,7 @@ module.exports = {
         query = `SELECT recipes.*, ${totalQuery}, 
             chefs.name AS chef_name, ${fileQuery} FROM recipes
             INNER JOIN chefs ON chefs.id = recipes.chef_id
+            ORDER BY created_at DESC
             ${filterQuery} LIMIT ${limit} OFFSET ${offset}`;
 
         return db.query(query);
