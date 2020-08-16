@@ -9,7 +9,7 @@
         <article class="recipes">
             {% for recipe in recipes %}
                 <div class="recipe">
-                    <span class="recipe-id">{{recipe.id}}</span>
+                    <span class="recipe-id">{{ recipe.id }}</span>
 
                     <img src="{{ recipe.file_path }}" alt="Imagem do prato {{ recipe.title }}">
 
@@ -23,6 +23,6 @@
         <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}" data-filter="{{pagination.filter}}"></div>
     </section>
 
-    <script src="/js/pagination.js"></script>
-    <script src="/js/redirect-for-recipe.js"></script>
+    <script src="/scripts/pagination.js"></script>
+    <script src="/scripts/redirect-for-recipe.js"></script>
 {% endblock %}

@@ -6,7 +6,13 @@
 
 {% block content %}
     <section>
-        <h2>Gerenciar chefs</h2>
+        <div class="chef-page-header">
+            <h2>Gerenciar chefs</h2>
+
+            <div class="chef-page-buttons-action">
+                <a href="/admin/chefs/create">Cadastrar chef</a>
+            </div>
+        </div>
 
         <article class="chefs">
             {% for chef in chefs %}

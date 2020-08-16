@@ -16,8 +16,9 @@
 
         <div class="chef-page-title">
             <img src="{{file.src}}" alt="Imagem do chef {{chef.chef}}" id="chef">
-            
+
             <h1>{{ chef.name }}</h1>
+
             <div class="chef-number-recipes">
                 {% if chef.total_recipes == 0 %}
                     <p>Sem receita</p>
@@ -29,20 +30,46 @@
             </div>
         </div>
 
-        <h2>Receitas</h2>
-        <article class="chef-recipes">
-            {% for recipe in recipes %}
-                <div class="chef-recipe">
-                    <div class="chef-recipe-image">
-                        <img src="{{ recipe.image }}" alt="Imagem do prato {{ recipe.title }}">
-                    </div>
-                    <div class="chef-recipe-content">
-                        <p class="chef-recipe-name">{{ recipe.title }}</p>
-                        <p class="name-chef">por {{ chef.name }}</p>
-                        <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
-                    </div>
+        <article>
+            {% if chef.total_recipes == 0 %}
+                <h2>Sem receita</h2>
+            {% elif chef.total_recipes == 1 %}
+                <h2>Receita</h2>
+
+                <div class="chef-recipe-container">
+                    {% for recipe in recipes %}
+                        <div class="chef-recipe">
+                            <div class="chef-recipe-image">
+                                <img src="{{ recipe.image }}" alt="Imagem do prato {{ recipe.title }}">
+                            </div>
+
+                            <div class="chef-recipe-content">
+                                <p class="chef-recipe-name">{{ recipe.title }}</p>
+                                <p class="name-chef">por {{ chef.name }}</p>
+                                <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            {% else %}
+                <h2>Receitas</h2>
+
+                <div class="chef-recipe-container">
+                    {% for recipe in recipes %}
+                        <div class="chef-recipe">
+                            <div class="chef-recipe-image">
+                                <img src="{{ recipe.image }}" alt="Imagem do prato {{ recipe.title }}">
+                            </div>
+
+                            <div class="chef-recipe-content">
+                                <p class="chef-recipe-name">{{ recipe.title }}</p>
+                                <p class="name-chef">por {{ chef.name }}</p>
+                                <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </article>
     </section>
 {% endblock %}

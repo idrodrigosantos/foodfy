@@ -6,7 +6,13 @@
 
 {% block content %}
     <section>
-        <h2>Gerenciar receitas</h2>
+        <div class="recipe-page-header">
+            <h2>Gerenciar receitas</h2>
+
+            <div class="recipe-page-buttons-action">
+                <a href="/admin/recipes/create">Cadastrar receita</a>
+            </div>
+        </div>
 
         <article class="recipes">
             {% for recipe in recipes %}
@@ -27,5 +33,5 @@
 
     <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}" data-filter="{{pagination.filter}}"></div>
 
-    <script src="/js/pagination.js"></script>
+    <script src="/scripts/pagination.js"></script>
 {% endblock %}
