@@ -10,6 +10,9 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -153,6 +156,7 @@ footer {
     background-color: #eeeeee;
     margin-top: 40px;
     height: 62px;
+    margin-top: auto;
 }
 
 footer p {

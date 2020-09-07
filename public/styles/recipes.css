@@ -14,11 +14,15 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     max-width: 940px;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* Barra navegação */
@@ -46,6 +50,11 @@ nav .nav-image {
 
 nav .nav-links {
     padding: 38px 0 36px 0;
+    display: flex;
+}
+
+nav .nav-links a:nth-child(3) {
+    margin-right: auto;
 }
 
 .nav-links a {
@@ -55,6 +64,16 @@ nav .nav-links {
     color: #999999;
     font-weight: normal;
     text-transform: uppercase;
+}
+
+.nav-links button {
+    font-size: 16px;
+    text-decoration: none;
+    color: #999999;
+    font-weight: normal;
+    text-transform: uppercase;
+    background-color: #111111;
+    cursor: pointer;
 }
 
 nav .nav-links a.link-active {
@@ -240,6 +259,7 @@ footer {
     background-color: #eeeeee;
     margin-top: 40px;
     height: 62px;
+    margin-top: auto;
 }
 
 footer p {
