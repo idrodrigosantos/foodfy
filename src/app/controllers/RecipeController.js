@@ -6,36 +6,31 @@ const RecipeFile = require('../models/RecipeFile');
 module.exports = {
     // Página inicial do admin
     async index(req, res) {
-        let { filter, page, limit } = req.query;
+        let { page, limit, user } = req.query;
 
         page = page || 1;
         limit = limit || 6;
 
         let offset = limit * (page - 1);
 
+        user = req.session.userId;
+
         const params = {
-            filter,
             limit,
             offset,
+            user
         }
 
         const results = await Recipe.paginate(params);
 
-        const recipes = [];
+        const recipes = results.rows.map(recipe => ({
+            ...recipe,
+            src: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
+        }));
 
         const pagination = {
-            total: Math.ceil(results.rows[0].total / limit),
-            page,
-            filter
-        }
-
-        for (let recipe of results.rows) {
-            recipe = {
-                ...recipe,
-                src: `${req.protocol}://${req.headers.host}${(recipe.file_path).replace('public', '')}`
-            }
-
-            recipes.push(recipe);
+            total: recipes[0] ? Math.ceil(recipes[0].total / limit) : 0,
+            page
         }
 
         return res.render('admin/recipes/index', { recipes, pagination });
@@ -84,7 +79,9 @@ module.exports = {
             preparation
         }
 
-        const results = await Recipe.create(data);
+        const UserId = req.session.userId;
+
+        const results = await Recipe.create(data, UserId);
 
         const recipe_id = results.rows[0].id;
 

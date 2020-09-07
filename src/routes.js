@@ -6,17 +6,17 @@ const routes = express.Router();
 const multer = require('./app/middlewares/multer');
 
 // Importa os controllers
-const website = require('./app/controllers/website');
-const recipes = require('./app/controllers/recipes');
-const chefs = require('./app/controllers/chefs');
+const HomeController = require('./app/controllers/HomeController');
+const RecipeController = require('./app/controllers/RecipeController');
+const ChefController = require('./app/controllers/ChefController');
 
 // Rotas website
-routes.get('/', website.index);
-routes.get('/sobre', website.about);
-routes.get('/receitas', website.recipes);
-routes.get('/receita/:id', website.recipe);
-routes.get('/chefs', website.chefs);
-routes.get('/pesquisa', website.search);
+routes.get('/', HomeController.index);
+routes.get('/sobre', HomeController.about);
+routes.get('/receitas', HomeController.recipes);
+routes.get('/receita/:id', HomeController.recipe);
+routes.get('/chefs', HomeController.chefs);
+routes.get('/pesquisa', HomeController.search);
 
 // Rotas recipes
 routes.get('/admin/recipes', recipes.index)

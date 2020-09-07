@@ -74,7 +74,10 @@ module.exports = {
 
         results = await Chef.findRecipesByChefId(chef.id);
 
-        const recipes = results.rows;
+        const recipes = results.rows.map(recipe => ({
+            ...recipe,
+            file_path: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
+        }));
 
         return res.render('admin/chefs/show', { chef, recipes, file });
     },

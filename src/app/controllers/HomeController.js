@@ -1,21 +1,21 @@
 // Importa o modelo
-const Website = require('../models/Website');
+const Home = require('../models/Home');
 
 module.exports = {
     // Index
     async index(req, res) {
-        const results = await Website.index();
+        const results = await Home.index();
 
         const recipes = results.rows.map(recipe => ({
             ...recipe,
             file_path: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
         }));
 
-        return res.render('website/index', { recipes });
+        return res.render('home/index', { recipes });
     },
     // Sobre
     about(req, res) {
-        return res.render('website/sobre');
+        return res.render('home/sobre');
     },
     // Receitas
     async recipes(req, res) {
@@ -32,7 +32,7 @@ module.exports = {
             offset
         }
 
-        const results = await Website.paginate(params);
+        const results = await Home.paginate(params);
 
         const recipes = results.rows.map(recipe => ({
             ...recipe,
@@ -45,17 +45,17 @@ module.exports = {
             filter
         }
 
-        return res.render('website/receitas', { recipes, pagination });
+        return res.render('home/receitas', { recipes, pagination });
     },
     // Receita individual
     async recipe(req, res) {
         const { id } = req.params;
 
-        let results = await Website.find(id);
+        let results = await Home.find(id);
 
         const recipe = results.rows[0];
 
-        results = await Website.files(id);
+        results = await Home.files(id);
 
         const files = results.rows.map(file => ({
             ...file,
@@ -66,31 +66,34 @@ module.exports = {
             return res.send('Receita não foi encontrada.');
         }
 
-        return res.render('website/receita', { recipe, files });
+        return res.render('home/receita', { recipe, files });
     },
     // Chefs
     async chefs(req, res) {
-        const results = await Website.chefs();
+        const results = await Home.chefs();
 
         const chefs = results.rows.map(chef => ({
             ...chef,
             file_src: `${req.protocol}://${req.headers.host}${chef.file_path.replace('public', '')}`
         }));
 
-        return res.render('website/chefs', { chefs });
+        return res.render('home/chefs', { chefs });
     },
     // Pesquisar receita
-    search(req, res) {
+    async search(req, res) {
         let { filter } = req.query;
 
         const params = {
-            filter,
-
-            callback(recipes) {
-                return res.render('website/pesquisa', { recipes, filter });
-            }
+            filter
         }
 
-        Website.search(params);
+        const results = await Home.search(params);
+
+        const recipes = results.rows.map(recipe => ({
+            ...recipe,
+            file_path: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
+        }));
+
+        return res.render('home/pesquisa', { recipes, filter });
     }
 };
