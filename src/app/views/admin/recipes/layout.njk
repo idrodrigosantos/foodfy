@@ -7,7 +7,7 @@
         {% block head %}
             <title>Foodfy</title>
         {% endblock %}
-        <link rel="stylesheet" href="/styles/chefs.css">
+        <link rel="stylesheet" href="/styles/recipes.css">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     </head>
 
@@ -15,14 +15,22 @@
         <nav>
             <div class="nav-width">
                 <div class="nav-image">
-                    <a href="/admin/chefs">
+                    <a href="/admin/recipes">
                         <img src="/assets/logo-white.png" alt="Logo do Foodfy">
                     </a>
                 </div>
 
                 <div class="nav-links">
-                    <a href="/admin/recipes">Receitas</a>
-                    <a href="/admin/chefs" class="link-active">Chefs</a>
+                    <a href="/admin/recipes" class="link-active">Receitas</a>
+                    <a href="/admin/chefs">Chefs</a>
+                    {% if session.isAdmin %}
+                        <a href="/admin/users">Usuários</a>
+                    {% else %}
+                        <a href="/admin/profile">Perfil</a>
+                    {% endif %}
+                    <form action="/logout" method="POST">
+                        <button class="button-leave">Sair</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -30,9 +38,7 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer>
-            <p>Todos direitos reservados, receitas Foodfy.</p>
-        </footer>
+        {% include "admin/parts/footer.njk" %}
     </body>
 
 </html>

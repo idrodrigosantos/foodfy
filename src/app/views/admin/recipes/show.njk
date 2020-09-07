@@ -1,4 +1,4 @@
-{% extends "layout-recipes.njk" %}
+{% extends "admin/recipes/layout.njk" %}
 
 {% block head %}
     <title>Foodfy - {{ recipe.title }}</title>
@@ -9,9 +9,11 @@
         <div class="recipe-page-header">
             <h2>Receita: {{ recipe.title }}</h2>
 
-            <div class="recipe-page-buttons-action">
-                <a href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
-            </div>
+            {% if session.userId == recipe.user_id or session.isAdmin %}
+                <div class="recipe-page-buttons-action">
+                    <a href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
+                </div>            
+            {% endif %}
         </div>
 
         <div class="gallery">

@@ -1,4 +1,4 @@
-{% extends "layout-recipes.njk" %}
+{% extends "admin/recipes/layout.njk" %}
 
 {% block head %}
     <title>Foodfy - Receitas</title>
@@ -31,7 +31,7 @@
         </article>
     </section>
 
-    <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}" data-filter="{{pagination.filter}}"></div>
+    <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}"></div>
 
-    <script src="/scripts/pagination.js"></script>
+    <script src="/scripts/pagination-user.js"></script>
 {% endblock %}

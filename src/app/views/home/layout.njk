@@ -7,7 +7,7 @@
         {% block head %}
             <title>Foodfy</title>
         {% endblock %}
-        <link rel="stylesheet" href="/styles/website.css">
+        <link rel="stylesheet" href="/styles/home.css">
     </head>
 
     <body>
@@ -36,9 +36,7 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer>
-            <p>Todos direitos reservados, receitas Foodfy.</p>
-        </footer>
+        {% include "admin/parts/footer.njk" %}
     </body>
 
 </html>

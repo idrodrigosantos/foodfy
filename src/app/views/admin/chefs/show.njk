@@ -1,4 +1,4 @@
-{% extends "layout-chefs.njk" %}
+{% extends "admin/chefs/layout.njk" %}
 
 {% block head %}
     <title>Foodfy - {{ chef.name }}</title>
@@ -9,9 +9,11 @@
         <div class="chef-page-header">
             <h2>Chef: {{ chef.name }}</h2>
 
-            <div class="chef-page-buttons-action">
-                <a href="/admin/chefs/{{chef.id}}/edit">Editar chef</a>
-            </div>
+            {% if session.isAdmin %}
+                <div class="chef-page-buttons-action">
+                    <a href="/admin/chefs/{{chef.id}}/edit">Editar chef</a>
+                </div>
+            {% endif %}
         </div>
 
         <div class="chef-page-title">
@@ -40,7 +42,7 @@
                     {% for recipe in recipes %}
                         <div class="chef-recipe">
                             <div class="chef-recipe-image">
-                                <img src="{{ recipe.image }}" alt="Imagem do prato {{ recipe.title }}">
+                                <img src="{{ recipe.file_path }}" alt="Imagem do prato {{ recipe.title }}">
                             </div>
 
                             <div class="chef-recipe-content">
@@ -58,7 +60,7 @@
                     {% for recipe in recipes %}
                         <div class="chef-recipe">
                             <div class="chef-recipe-image">
-                                <img src="{{ recipe.image }}" alt="Imagem do prato {{ recipe.title }}">
+                                <img src="{{ recipe.file_path }}" alt="Imagem do prato {{ recipe.title }}">
                             </div>
 
                             <div class="chef-recipe-content">

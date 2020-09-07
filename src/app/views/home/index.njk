@@ -1,11 +1,20 @@
-{% extends "layout-website.njk" %}
-
-{% block head %}
-    <title>Foodfy - Receitas</title>
-{% endblock %}
+{% extends "home/layout.njk" %}
 
 {% block content %}
+    <header>
+        <div class="header-text">
+            <h1>As melhores receitas</h1>
+            <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+        </div>
+
+        <div class="header-image-chef">
+            <img src="/assets/chef.png" alt="Desenho de um chef">
+        </div>
+    </header>
+
     <section>
+        <h2>Mais acessadas</h2>
+
         <article class="recipes">
             {% for recipe in recipes %}
                 <div class="recipe">

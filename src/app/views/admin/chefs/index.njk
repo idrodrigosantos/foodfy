@@ -1,4 +1,4 @@
-{% extends "layout-chefs.njk" %}
+{% extends "admin/chefs/layout.njk" %}
 
 {% block head %}
     <title>Foodfy - Chefs</title>
@@ -9,9 +9,11 @@
         <div class="chef-page-header">
             <h2>Gerenciar chefs</h2>
 
-            <div class="chef-page-buttons-action">
-                <a href="/admin/chefs/create">Cadastrar chef</a>
-            </div>
+            {% if session.isAdmin %}
+                <div class="chef-page-buttons-action">
+                    <a href="/admin/chefs/create">Cadastrar chef</a>
+                </div>
+            {% endif %}
         </div>
 
         <article class="chefs">
