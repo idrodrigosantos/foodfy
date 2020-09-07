@@ -1,0 +1,34 @@
+{% extends "admin/user/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy - {{ user.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <form method="POST" action="/admin/profile?_method=PUT">
+            <div class="user-page-header">
+                <h2>Bem-vindo {{ user.name }}</h2>
+
+                <button type="submit" class="button-save-profile">Salvar</button>
+            </div>
+
+            <div class="user-info">
+                {% include "admin/user/fields.njk" %}
+
+                <div class="user-check-admin">
+                    <input
+                        type="checkbox"
+                        name="is_admin"
+                        value="true"
+                        {% if user.is_admin %}
+                            checked
+                        {% endif %}                        
+                    >Administrador
+                </div>
+            </div>
+
+            <input type="hidden" name="id" value="{{user.id}}">
+        </form>
+    </section>
+{% endblock %}

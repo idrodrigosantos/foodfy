@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head %}
+            <title>Foodfy</title>
+        {% endblock %}
+        <link rel="stylesheet" href="/styles/users.css">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-width">
+                <div class="nav-image">
+                    {% if session.isAdmin %}
+                        <a href="/admin/users">
+                            <img src="/assets/logo-white.png" alt="Logo do Foodfy">
+                        </a>
+                    {% else %}
+                        <a href="/admin/profile">
+                            <img src="/assets/logo-white.png" alt="Logo do Foodfy">
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="nav-links">
+                    <a href="/admin/recipes">Receitas</a>
+                    <a href="/admin/chefs">Chefs</a>
+                    {% if session.isAdmin %}
+                        <a href="/admin/users" class="link-active">Usuários</a>
+                    {% else %}
+                        <a href="/admin/profile" class="link-active">Perfil</a>
+                    {% endif %}
+                    <form action="/logout" method="POST">
+                        <button>Sair</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <main>
+            {% include "admin/parts/messages.njk" %}
+
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include "admin/parts/footer.njk" %}
+    </body>
+
+</html>
