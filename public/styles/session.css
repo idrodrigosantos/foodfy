@@ -1,0 +1,170 @@
+/* Global */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #6558C3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+/* Barra navegação */
+
+nav .nav-image {
+    display: flex;
+    margin: 35px 0 146px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Mensagem de sucesso/erro */
+@keyframes hidemessage {
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+main .messages {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    width: 344px;
+    height: 135px;
+    padding: 56px 35px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 1;
+    animation: hidemessage 400ms 5s ease-out forwards;
+}
+
+.messages.success {
+    background-color: #01b12a;
+}
+
+.messages.error {
+    background-color: #dc4747;
+}
+
+/* Footer */
+
+footer {
+    background-color: #eeeeee;
+    margin-top: 40px;
+    height: 62px;
+    margin-top: auto;
+}
+
+footer p {
+    padding: 23px 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+}
+
+/* Página de login */
+
+.login-form .header h3 {
+    font-weight: bold;
+    font-size: 24px;
+    color: #111111;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.login-form .fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form .fields .item {
+    font-weight: bold;
+    font-size: 16px;
+    color: #111111;
+}
+
+.login-form .fields .item .input input {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    height: 49px;
+    width: 500px;
+    margin-top: 10px;
+    margin-bottom: 35px;
+    font-size: 16px;
+    color: #999999;
+    padding: 15px 14px;
+    box-sizing: border-box;
+}
+
+.login-form .login-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.login-form .login-footer a {
+    font-weight: bold;
+    font-size: 16px;
+    color: #969696;
+    text-decoration: none;
+}
+
+.login-form .button-footer-form button {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    width: 134px;
+    height: 37px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Botão página recuperação de senha e resetar senha  */
+.login-form .forgot-footer,
+.login-form .reset-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    max-width: 500px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* Mensagem erro de e-mail com formatação errada */
+.user-email .error {
+    background-color: #e74c3c;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+}
