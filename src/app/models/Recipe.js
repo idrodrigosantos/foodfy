@@ -13,21 +13,23 @@ module.exports = {
         return db.query(query);
     },
     // Cadastra receita
-    create(data) {
+    create(data, userId) {
         const query = `INSERT INTO recipes (
             title, 
             ingredients, 
             preparation, 
             information,
-            chef_id
-        ) VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+            chef_id,
+            user_id
+        ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
 
         const values = [
             data.title,
             data.ingredients,
             data.preparation,
             data.information,
-            data.chef_id
+            data.chef_id,
+            userId
         ];
 
         return db.query(query, values);
@@ -68,7 +70,7 @@ module.exports = {
             ingredients = $2, 
             preparation = $3, 
             information = $4, 
-            chef_id =$5
+            chef_id = $5
         WHERE id = $6`;
 
         const values = [
@@ -89,28 +91,42 @@ module.exports = {
         return db.query('SELECT id, name FROM chefs');
     },
     paginate(params) {
-        const { filter, limit, offset } = params;
+        const { limit, offset, user } = params;
 
         let query = "",
-            filterQuery = "",
+            userQuery = "",
             totalQuery = "(SELECT COUNT(*) FROM recipes) AS total";
 
-        if (filter) {
-            filterQuery = `WHERE title ILIKE '%${filter}%'`;
-            totalQuery = `(SELECT COUNT(*) FROM recipes ${filterQuery}) AS total`;
+        if (user == 1) {
+            userQuery = ''
+        } else {
+            userQuery = `WHERE user_id = ${user}`
         }
 
-        const fileQuery = `(SELECT path FROM files 
-            INNER JOIN recipe_files 
-            ON recipe_files.file_id = files.id 
+        const fileQuery = `(SELECT path FROM files
+            INNER JOIN recipe_files
+            ON recipe_files.file_id = files.id
             WHERE recipe_id = recipes.id LIMIT 1) AS file_path`;
 
-        query = `SELECT recipes.*, ${totalQuery}, 
+        query = `SELECT recipes.*, ${totalQuery},
             chefs.name AS chef_name, ${fileQuery} FROM recipes
             INNER JOIN chefs ON chefs.id = recipes.chef_id
+            ${userQuery}
             ORDER BY created_at DESC
-            ${filterQuery} LIMIT ${limit} OFFSET ${offset}`;
+            LIMIT ${limit} OFFSET ${offset}`;
 
         return db.query(query);
+    },
+    async findRecipeWithChef(id) {
+        try {
+            const results = await db.query(`SELECT recipes.*, 
+                chefs.name AS author FROM recipes
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+                WHERE recipes.id=$1`, [id]);
+
+            return results.rows[0];
+        } catch (err) {
+            console.error(err);
+        }
     }
 };

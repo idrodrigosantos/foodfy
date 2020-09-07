@@ -40,7 +40,7 @@ module.exports = {
     },
     // Pesquisa de receita
     search(params) {
-        const { filter, callback } = params;
+        const { filter } = params;
 
         let query = '';
 
@@ -50,15 +50,11 @@ module.exports = {
             filterQuery = `WHERE recipes.title ILIKE '%${filter}%'`;
         }
 
-        query = `SELECT recipes.*, chefs.name AS chef_name FROM recipes 
+        const fileQuery = '(SELECT path FROM files INNER JOIN recipe_files ON recipe_files.file_id = files.id WHERE recipe_id = recipes.id LIMIT 1) AS file_path'
+        query = `SELECT recipes.*, chefs.name AS chef_name, ${fileQuery} FROM recipes 
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id) ${filterQuery} ORDER BY updated_at DESC`;
 
-        db.query(query, function (err, results) {
-            if (err) {
-                throw `Database Error! ${err}`;
-            }
-            callback(results.rows);
-        });
+        return db.query(query);
     },
     // Paginação
     paginate(params) {

@@ -58,7 +58,9 @@ module.exports = {
         return db.query('DELETE FROM chefs WHERE id = $1', [id]);
     },
     findRecipesByChefId(id) {
-        const query = 'SELECT * FROM recipes WHERE chef_id = $1';
+        const fileQuery = '(SELECT path FROM files INNER JOIN recipe_files ON recipe_files.file_id = files.id WHERE recipe_id = recipes.id LIMIT 1) AS file_path'
+        
+        const query = `SELECT recipes.*, ${fileQuery} FROM recipes WHERE chef_id = $1`;
 
         return db.query(query, [id]);
     },
