@@ -3,9 +3,13 @@ const fs = require('fs');
 
 module.exports = {
     async create({ filename, path }) {
-        const query = 'INSERT INTO files (name, path) VALUES ($1, $2) RETURNING id';
+        try {
+            const query = 'INSERT INTO files (name, path) VALUES ($1, $2) RETURNING id';
 
-        return db.query(query, [filename, path]);
+            return db.query(query, [filename, path]);
+        } catch (err) {
+            console.log(err);
+        }
     },
     async delete(id) {
         try {
