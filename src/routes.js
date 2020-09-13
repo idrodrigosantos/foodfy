@@ -19,7 +19,12 @@ const SessionValidator = require('./app/validators/session');
 const ProfileValidator = require('./app/validators/profile');
 
 // Controle de sessão
-const { isLoggedRedirectToUsers, onlyUsers, onlyAdmin, allowEditMyRecipe } = require('./app/middlewares/session');
+const {
+    isLoggedRedirectToUsers,
+    onlyUsers,
+    onlyAdmin,
+    allowEditMyRecipe
+} = require('./app/middlewares/session');
 
 // Rotas website
 routes.get('/', HomeController.index);
@@ -67,7 +72,7 @@ routes.get('/admin/users', onlyAdmin, UserController.list);
 routes.get('/admin/users/create', onlyAdmin, UserController.create);
 routes.post('/admin/users/create', onlyAdmin, UserValidator.post, UserController.post);
 routes.get('/admin/users/:id/edit', onlyAdmin, UserController.edit);
-routes.put('/admin/users/:id', onlyAdmin, UserController.put);
+routes.put('/admin/users', onlyAdmin, UserValidator.update, UserController.put);
 routes.delete('/admin/users', onlyAdmin, UserController.delete);
 
 // Exporta o arquivo
