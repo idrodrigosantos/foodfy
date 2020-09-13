@@ -2,9 +2,13 @@ const User = require('../models/User');
 
 module.exports = {
     async index(req, res) {
-        const { user } = req;
+        try {
+            const { user } = req;
 
-        return res.render('admin/user/profile', { user });
+            return res.render('admin/users/profile', { user });
+        } catch (error) {
+            console.error(error);
+        }
     },
     async put(req, res) {
         try {
@@ -16,14 +20,14 @@ module.exports = {
                 email
             });
 
-            return res.render('admin/user/profile', {
+            return res.render('admin/users/profile', {
                 user: req.body,
                 success: 'Conta atualizada com sucesso.'
             });
         } catch (error) {
-            console.error(err);
+            console.error(error);
 
-            return res.render('admin/user/profile', {
+            return res.render('admin/users/profile', {
                 error: 'Algum erro aconteceu.'
             });
         }

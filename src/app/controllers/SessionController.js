@@ -1,5 +1,6 @@
 const User = require('../models/User');
 
+// Importa os pacotes
 const { hash } = require('bcryptjs');
 const crypto = require('crypto');
 const mailer = require('../../lib/mailer');
