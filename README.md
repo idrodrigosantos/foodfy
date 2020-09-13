@@ -69,7 +69,7 @@ Senha: 123
 
 Para acessar o sistema como usuário comum:
 ```
-E-mail: user1@email.com
+E-mail: user@email.com
 Senha: 123
 ```
 
