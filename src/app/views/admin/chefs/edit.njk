@@ -6,29 +6,29 @@
 
 {% block content %}
     <section class="chef-page">
-
         <div class="chef-page-header">
             <h2>Editando chef</h2>
 
             <div class="chef-page-buttons-action">
-                <form id="form-delete" method="POST" action="/admin/chefs?_method=DELETE">
-                    <button type="submit" class="button-delete">Deletar</button>
+                <div class="button-edit-delete">
+                    <button type="submit" class="button-delete" form="form-delete">Deletar</button>
+                </div>
 
-                    <input type="hidden" name="id" value="{{ chef.id }}">
-                </form>
+                <div class="button-edit-save">
+                    <button type="submit" form="post-save">Salvar chef</button>
+                </div>
             </div>
         </div>
 
-        <form method="POST" action="/admin/chefs?_method=PUT" enctype="multipart/form-data">
-            <div class="button-edit-save">
-                <button type="submit">Salvar chef</button>
-            </div>
+        <form id="form-delete" method="POST" action="/admin/chefs?_method=DELETE">
+            <input type="hidden" name="id" value="{{ chef.id }}">
+        </form>
 
+        <form method="POST" action="/admin/chefs?_method=PUT" enctype="multipart/form-data" id="post-save">
             <input type="hidden" name="id" value="{{ chef.id }}">
 
             {% include "admin/chefs/fields.njk" %}
         </form>
-
     </section>
 
     <script src="/scripts/confirm-delete.js"></script>

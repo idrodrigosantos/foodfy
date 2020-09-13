@@ -22,12 +22,18 @@
                     <div class="chef-image">
                         <img src="{{chef.file_src}}" alt="Chef {{ chef.name }}">
                     </div>
+
                     <div class="chef-content">
                         <p class="chef-name">{{ chef.name }}</p>
+
                         <a href="/admin/chefs/{{ chef.id }}">Visualizar</a>
                     </div>
                 </div>
             {% endfor %}
         </article>
     </section>
+
+    <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}"></div>
+
+    <script src="/scripts/pagination.js"></script>
 {% endblock %}

@@ -7,7 +7,9 @@
         {% block head %}
             <title>Foodfy</title>
         {% endblock %}
+        <link rel="stylesheet" href="/styles/admin.css">
         <link rel="stylesheet" href="/styles/recipes.css">
+        <link rel="stylesheet" href="/styles/messages.css">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     </head>
 
@@ -35,6 +37,8 @@
             </div>
         </nav>
         <main>
+            {% include "admin/parts/messages.njk" %}
+
             {% block content %}{% endblock %}
         </main>
 

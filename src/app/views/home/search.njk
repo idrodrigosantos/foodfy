@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <section>
+    <section class="recipes-search">
+        <p>Buscando por "{{ filter }}"</p>
         <article class="recipes">
             {% for recipe in recipes %}
                 <div class="recipe">

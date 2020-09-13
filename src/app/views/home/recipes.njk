@@ -11,7 +11,7 @@
                 <div class="recipe">
                     <span class="recipe-id">{{ recipe.id }}</span>
 
-                    <img src="{{ recipe.file_path }}" alt="Imagem do prato {{ recipe.title }}">
+                    <img src="{{ recipe.src }}" alt="Imagem do prato {{ recipe.title }}">
 
                     <p class="recipe-name">{{ recipe.title }}</p>
 
@@ -20,7 +20,7 @@
             {% endfor %}
         </article>
 
-        <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}" data-filter="{{pagination.filter}}"></div>
+        <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}"></div>
     </section>
 
     <script src="/scripts/pagination.js"></script>

@@ -12,15 +12,17 @@
                     <div class="chef-image">
                         <img src="{{ chef.file_src }}" alt="Chef {{ chef.name }}">
                     </div>
+
                     <div class="chef-content">
                         <p class="chef-name">{{ chef.name }}</p>
+
                         <div class="chef-recipes-number">
                             {% if chef.total_recipes == 0 %}
                                 <p>Sem receita</p>
-                            {% elif chef.total_recipes > 1 %}
-                                <p>{{ chef.total_recipes }} receitas</p>
-                            {% else %}
+                            {% elif chef.total_recipes == 1 %}
                                 <p>{{ chef.total_recipes }} receita</p>
+                            {% else %}
+                                <p>{{ chef.total_recipes }} receitas</p>
                             {% endif %}
                         </div>
                     </div>
@@ -28,4 +30,8 @@
             {% endfor %}
         </article>
     </section>
+
+    <div class="pagination" data-total="{{pagination.total}}" data-page="{{pagination.page}}"></div>
+
+    <script src="/scripts/pagination.js"></script>
 {% endblock %}

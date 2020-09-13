@@ -1,4 +1,4 @@
-{% extends "admin/user/layout.njk" %}
+{% extends "admin/users/layout.njk" %}
 
 {% block head %}
     <title>Foodfy - {{ user.name }}</title>
@@ -14,7 +14,7 @@
             </div>
 
             <div class="user-info">
-                {% include "admin/user/fields.njk" %}
+                {% include "admin/users/fields.njk" %}
 
                 <div class="item">
                     <div>Senha</div>

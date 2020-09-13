@@ -1,4 +1,4 @@
-{% extends "admin/user/layout.njk" %}
+{% extends "admin/users/layout.njk" %}
 
 {% block head %}
     <title>Foodfy - Cadastro de Usuário</title>
@@ -6,11 +6,9 @@
 
 {% block content %}
     <section>
-        <form method="POST" action="/admin/users/create" id="create-form">
-            <div class="user-page-header-create">
-                <div class="user-page-header-create-info">
-                    <h2>Criar Usuário</h2>
-                </div>
+        <form method="POST" action="/admin/users/create">
+            <div class="user-page-header">
+                <h2>Criar Usuário</h2>
 
                 <div class="user-page-header-create-buttons">
                     <button type="submit" class="create-button-save">Salvar</button>
@@ -20,10 +18,14 @@
             </div>
 
             <article class="user-info">
-                {% include "admin/user/fields.njk" %}
+                {% include "admin/users/fields.njk" %}
 
                 <div class="user-check-admin">
-                    <input type="checkbox" name="is_admin" value="true">Administrador
+                    <input
+                        type="checkbox"
+                        name="is_admin"
+                        value="true"
+                    >Administrador
                 </div>
             </article>
         </form>
