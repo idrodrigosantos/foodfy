@@ -24,7 +24,7 @@ async function show(req, res, next) {
 
     // Se não tiver usuário
     if (!user) {
-        return res.render('admin/user/register', {
+        return res.render('admin/users/create', {
             error: 'Usuário não encontrado.'
         });
     }
@@ -39,7 +39,7 @@ async function update(req, res, next) {
     const fillAllFields = checkAllFields(req.body);
 
     if (fillAllFields) {
-        return res.render('admin/user/profile', {
+        return res.render('admin/users/profile', {
             user: req.body,
             error: 'Por favor, preencha todos os campos.'
         });
@@ -48,7 +48,7 @@ async function update(req, res, next) {
     const { id, password } = req.body;
 
     if (!password) {
-        return res.render('admin/user/profile', {
+        return res.render('admin/users/profile', {
             user: req.body,
             error: 'Coloque sua senha para atualizar seu cadastro.'
         });
@@ -60,7 +60,7 @@ async function update(req, res, next) {
     const passed = await compare(password, user.password);
 
     if (!passed) {
-        return res.render('admin/user/profile', {
+        return res.render('admin/users/profile', {
             user: req.body,
             error: 'Senha incorreta.'
         });

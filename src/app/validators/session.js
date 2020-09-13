@@ -3,7 +3,31 @@ const User = require('../models/User');
 // Para descriptografar a senha
 const { compare } = require('bcryptjs');
 
+// Verifica se todos os campos estão preenchidos
+function checkAllFields(body) {
+    const keys = Object.keys(body);
+
+    for (key of keys) {
+        if (body[key] == '') {
+            return {
+                user: body,
+                error: 'Por favor, preencha todos os campos.'
+            };
+        }
+    }
+}
+
 async function login(req, res, next) {
+    // Verifica se todos os campos estão preenchidos
+    const fillAllFields = checkAllFields(req.body);
+
+    if (fillAllFields) {
+        return res.render('admin/session/login', {
+            user: req.body,
+            error: 'Por favor, preencha todos os campos.'
+        });
+    }
+
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
@@ -32,6 +56,16 @@ async function login(req, res, next) {
 }
 
 async function forgot(req, res, next) {
+    // Verifica se todos os campos estão preenchidos
+    const fillAllFields = checkAllFields(req.body);
+
+    if (fillAllFields) {
+        return res.render('admin/session/forgot-password', {
+            user: req.body,
+            error: 'Por favor, preencha todos os campos.'
+        });
+    }
+
     const { email } = req.body;
 
     try {
