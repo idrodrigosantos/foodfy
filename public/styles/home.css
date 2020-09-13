@@ -306,6 +306,13 @@ section .chefs {
     color: #666666;
 }
 
+/* Página de pesquisa de receitas */
+.recipes-search p {
+    font-weight: bold;
+    font-size: 24px;
+    color: #111111;
+}
+
 /* Paginação */
 
 .pagination {

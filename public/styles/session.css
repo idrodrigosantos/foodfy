@@ -33,39 +33,6 @@ nav .nav-image {
     justify-content: center;
 }
 
-/* Mensagem de sucesso/erro */
-@keyframes hidemessage {
-    to {
-        top: -50px;
-        opacity: 0;
-    }
-}
-
-main .messages {
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 16px;
-    color: #ffffff;
-    width: 344px;
-    height: 135px;
-    padding: 56px 35px;
-    box-sizing: border-box;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    opacity: 1;
-    animation: hidemessage 400ms 5s ease-out forwards;
-}
-
-.messages.success {
-    background-color: #01b12a;
-}
-
-.messages.error {
-    background-color: #dc4747;
-}
-
 /* Footer */
 
 footer {

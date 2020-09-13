@@ -25,7 +25,6 @@ function paginate(totalPages, selectedPage) {
 }
 
 function createPagination() {
-    const filter = pagination.dataset.filter;
     const totalPages = +pagination.dataset.total;
     const selectedPage = +pagination.dataset.page;
     const pages = paginate(totalPages, selectedPage);
@@ -36,11 +35,7 @@ function createPagination() {
         if (String(page).includes('...')) {
             elements += `<span>...</span>`;
         } else {
-            if (!filter) {
-                elements += `<a href="?page=${page}" ${(selectedPage == page ? 'class="active"' : '')}>${page}</a>`;
-            } else {
-                elements += `<a href="?filter=${filter}&page=${page}" ${(selectedPage == page ? 'class="active"' : '')}>${page}</a>`;
-            }
+            elements += `<a href="?page=${page}" ${(selectedPage == page ? 'class="active"' : '')}>${page}</a>`;
         }
     }
 
