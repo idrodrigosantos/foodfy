@@ -118,5 +118,10 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
+    },
+    find(id) {
+        const query = 'SELECT users.* FROM users WHERE id = $1';
+
+        return db.query(query, [id]);
     }
 };

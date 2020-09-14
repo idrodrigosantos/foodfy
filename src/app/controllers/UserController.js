@@ -37,9 +37,7 @@ module.exports = {
                 passwordHash
             }
 
-            const userId = await User.create(data);
-
-            req.session.userId = userId;
+            await User.create(data);
 
             await mailer.sendMail({
                 to: data.email,
