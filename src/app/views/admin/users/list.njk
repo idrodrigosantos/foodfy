@@ -24,14 +24,6 @@
                         <div class="user-list-edit">
                             <a href="/admin/users/{{user.id}}/edit">Editar</a>
                         </div>
-
-                        <div class="user-list-remove">
-                            <form method='POST' action='/admin/users?_method=DELETE'>
-                                <button type="submit" class="create-button-save">Remover</button>
-
-                                <input type="hidden" name="id" value="{{ user.id }}">
-                            </form>
-                        </div>
                     </div>
                 </div>
             {% endfor %}

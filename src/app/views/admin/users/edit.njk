@@ -1,18 +1,26 @@
 {% extends "admin/users/layout.njk" %}
 
 {% block head %}
-    <title>Foodfy - {{ user.name }}</title>
+    <title>Foodfy - Usuário</title>
 {% endblock %}
 
 {% block content %}
     <section>
-        <form method="POST" action="/admin/users?_method=PUT">
-            <div class="user-page-header">
-                <h2>Editar Usuário</h2>
+        <div class="user-page-header">
+            <h2>Editar Usuário</h2>
 
-                <button type="submit" class="button-save-profile">Salvar</button>
+            <div class="user-page-header-create-buttons">
+                <button type="submit" form="form-delete" class="create-button-delete">Deletar</button>
+                
+                <button type="submit" form="post-save" class="create-button-save">Salvar</button>
             </div>
+        </div>
 
+        <form id="form-delete" method="POST" action="/admin/users?_method=DELETE">
+            <input type="hidden" name="id" value="{{ user.id }}">
+        </form>
+
+        <form method="POST" action="/admin/users?_method=PUT" id="post-save">
             <div class="user-info">
                 {% include "admin/users/fields.njk" %}
 
@@ -31,4 +39,6 @@
             <input type="hidden" name="id" value="{{user.id}}">
         </form>
     </section>
+
+    <script src="/scripts/confirm-delete.js"></script>
 {% endblock %}

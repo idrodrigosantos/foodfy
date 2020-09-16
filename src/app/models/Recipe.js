@@ -7,14 +7,14 @@ module.exports = {
         try {
             const { limit, offset, user, userAdmin } = params;
 
-            let query = "",
-                userQuery = "",
-                totalQuery = "(SELECT COUNT(*) FROM recipes) AS total";
+            let query = '',
+                userQuery = '',
+                totalQuery = '(SELECT COUNT(*) FROM recipes) AS total';
 
             if (user || userAdmin) {
                 if (userAdmin) {
                     userQuery = '';
-                    totalQuery = "(SELECT COUNT(*) FROM recipes) AS total";
+                    totalQuery = '(SELECT COUNT(*) FROM recipes) AS total';
                 } else {
                     userQuery = `WHERE user_id = ${user}`;
                     totalQuery = `(SELECT COUNT(*) FROM recipes WHERE user_id = ${user}) AS total`;
