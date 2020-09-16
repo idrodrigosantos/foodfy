@@ -44,16 +44,14 @@ async function post(req, res, next) {
 
 async function update(req, res, next) {
     // Verifica se todos os campos estão preenchidos
+    const { id } = req.body;
+
     const fillAllFields = checkAllFields(req.body);
 
     if (fillAllFields) {
-        return res.render('admin/users/edit', {
-            user: req.body,
-            error: 'Por favor, preencha todos os campos.'
-        });
+        req.session.error = 'Por favor, preencha todos os campos.';
+        return res.redirect(`users/${id}/edit`);
     }
-
-    const { id } = req.body;
 
     const user = await User.findOne({
         where: { id }

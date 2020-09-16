@@ -1,11 +1,14 @@
 // Importa os modelos
 const Chef = require('../models/Chef');
 const File = require('../models/File');
+const ChefFile = require('../models/ChefFile');
 
 module.exports = {
     // Mostra todos os chefs
     async index(req, res) {
         try {
+            user = req.session.userId;
+
             let { page, limit } = req.query;
 
             page = page || 1;
@@ -30,14 +33,21 @@ module.exports = {
                 page
             }
 
-            return res.render('admin/chefs/index', { chefs, pagination });
+            const { error, success } = req.session;
+            req.session.error = '';
+            req.session.success = '';
+
+            return res.render('admin/chefs/index', { chefs, pagination, error, success });
         } catch (error) {
             console.error(error);
         }
     },
     // Página para cadastro de chef
     create(req, res) {
-        return res.render('admin/chefs/create');
+        const { error } = req.session;
+        req.session.error = '';
+
+        return res.render('admin/chefs/create', { error });
     },
     // Cadastra chef
     async post(req, res) {
@@ -46,35 +56,43 @@ module.exports = {
 
             for (key of keys) {
                 if (req.body[key] == '') {
-                    return res.send('Por favor, preencha todos os campos.');
+                    // return res.send('Por favor, preencha todos os campos.');
+
+                    req.session.error = 'Por favor, preencha todos os campos.';
+                    return res.redirect('/admin/chefs/create');
                 }
             }
 
             if (req.files.length == 0) {
-                return res.send('Por favor, envie pelo menos uma imagem.');
+                // return res.send('Por favor, envie pelo menos uma imagem.');
+
+                req.session.error = 'Por favor, envie pelo menos uma imagem.';
+                return res.redirect('/admin/chefs/create');
             }
-
-            const file = {
-                ...req.files[0]
-            }
-
-            let results = await File.create(file);
-
-            const file_id = results.rows[0].id;
 
             const data = {
                 ...req.body,
-                file_id
             }
 
-            results = await Chef.create(data);
+            const results = await Chef.create(data);
 
-            // const chefId = results.rows[0].id;
-            // return res.redirect(`/admin/chefs/${chefId}`);
+            const chef_id = results.rows[0].id;
 
-            return res.render('admin/chefs/create', {
-                success: 'Chef criado com sucesso.',
+            const filesPromise = req.files.map(async file => {
+                const results = await File.create(file);
+                const file_id = results.rows[0].id;
+                const chefFile = {
+                    file_id,
+                    chef_id
+                }
+
+                await ChefFile.create(chefFile);
             });
+
+            await Promise.all(filesPromise);
+
+            req.session.success = 'Chef criado com sucesso.';
+            return res.redirect('/admin/chefs');
         } catch (error) {
             console.error(error);
         }
@@ -88,7 +106,7 @@ module.exports = {
 
             const chef = results.rows[0];
 
-            results = await Chef.files(chef.file_id);
+            results = await Chef.files(id);
 
             const file = {
                 ...results.rows[0],
@@ -102,7 +120,10 @@ module.exports = {
                 file_path: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
             }));
 
-            return res.render('admin/chefs/show', { chef, recipes, file });
+            const { success } = req.session;
+            req.session.success = '';
+
+            return res.render('admin/chefs/show', { chef, recipes, file, success });
         } catch (error) {
             console.error(error);
         }
@@ -116,16 +137,21 @@ module.exports = {
 
             const chef = results.rows[0];
 
-            if (!chef) return res.send('Chef não foi encontrado.');
+            if (!chef) {
+                return res.send('Chef não foi encontrado.');
+            }
 
-            results = await Chef.files(chef.file_id);
+            results = await Chef.files(id);
 
             const file = {
                 ...results.rows[0],
                 src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', '')}`
             }
 
-            return res.render('admin/chefs/edit', { chef, file });
+            const { error } = req.session;
+            req.session.error = '';
+
+            return res.render('admin/chefs/edit', { chef, file, error });
         } catch (error) {
             console.error(error);
         }
@@ -135,42 +161,55 @@ module.exports = {
         try {
             const keys = Object.keys(req.body);
 
+            const { id: chef_id } = req.body;
+
             for (key of keys) {
                 if (req.body[key] == '' && key != 'removed_files') {
-                    return res.send('Por favor, preencha todos os campos.');
+                    // return res.send('Por favor, preencha todos os campos.');
+
+                    req.session.error = 'Por favor, preencha todos os campos.';
+                    return res.redirect(`/admin/chefs/${req.body.id}/edit`);
                 }
             }
-
-            let fileId;
 
             if (req.files.length != 0) {
-                const file = {
-                    ...req.files[0]
-                }
+                const filesPromise = req.files.map(async file => {
+                    const results = await File.create(file);
+                    const file_id = results.rows[0].id;
+                    const chefFile = {
+                        file_id,
+                        chef_id
+                    }
 
-                const results = await File.create(file);
+                    await ChefFile.create(chefFile);
+                });
 
-                fileId = results.rows[0].id;
+                await Promise.all(filesPromise);
             }
-
-            const chef = {
-                ...req.body,
-                file_id: fileId || req.body.file_id
-            }
-
-            await Chef.update(chef);
 
             if (req.body.removed_files) {
-                const removedFile = req.body.removed_files.split(',')[0];
+                const removedFiles = req.body.removed_files.split(',');
 
-                await File.delete(removedFile);
+                const lastIndex = removedFiles.length - 1;
+
+                removedFiles.splice(lastIndex, 1);
+
+                const removedFilesPromise = removedFiles.map(async id => {
+                    await ChefFile.delete({
+                        file_id: id,
+                        chef_id,
+                    });
+
+                    await File.delete(id);
+                });
+
+                await Promise.all(removedFilesPromise);
             }
 
-            // return res.redirect(`/admin/chefs/${req.body.id}`);
+            await Chef.update(req.body);
 
-            return res.render('admin/chefs/edit', {
-                success: 'Chef atualizado com sucesso.',
-            });
+            req.session.success = 'Chef atualizado com sucesso.';
+            return res.redirect(`/admin/chefs/${req.body.id}`);
         } catch (error) {
             console.error(error);
         }
@@ -180,13 +219,25 @@ module.exports = {
         try {
             const { id } = req.body;
 
+            let results = await Chef.files(id);
+
+            const filesPromise = results.rows.map(async file => {
+                const files = {
+                    file_id: file.id,
+                    chef_id: id
+                }
+
+                await ChefFile.delete(files);
+
+                await File.delete(file.id);
+            });
+
+            Promise.all(filesPromise);
+
             await Chef.delete(id);
 
-            // return res.redirect(`/admin/chefs`);
-
-            return res.render('admin/chefs/edit', {
-                success: 'Chef deletado com sucesso.',
-            });
+            req.session.success = 'Chef deletado com sucesso.';
+            return res.redirect('/admin/chefs');
         } catch (error) {
             console.error(error);
         }

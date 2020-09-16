@@ -1,6 +1,3 @@
-// Utils
-const { date } = require('../../lib/utils');
-
 // Importa a conexão com o banco de dados
 const db = require('../../config/db');
 
@@ -10,15 +7,19 @@ module.exports = {
         try {
             const { limit, offset } = params;
 
-            let query = "", count = "";
+            let query = '', count = '';
 
             count = `(SELECT COUNT(*) FROM chefs) AS total,
                 (SELECT COUNT(*) FROM recipes WHERE chef_id = chefs.id) AS total_recipes`;
 
+            const fileQuery = `(SELECT path FROM files
+                INNER JOIN chef_files
+                ON chef_files.file_id = files.id
+                WHERE chef_id = chefs.id LIMIT 1) AS file_path`;
+
             query = `SELECT chefs.*, 
                 ${count}, 
-                path AS file_path FROM chefs 
-                LEFT JOIN files ON files.id = chefs.file_id 
+                ${fileQuery} FROM chefs
                 ORDER BY created_at ASC
                 LIMIT ${limit} OFFSET ${offset}`;
 
@@ -30,16 +31,10 @@ module.exports = {
     // Cadastra chef
     create(data) {
         try {
-            const query = `INSERT INTO chefs (
-                name, 
-                file_id, 
-                created_at
-            ) VALUES ($1, $2, $3) RETURNING id`;
+            const query = 'INSERT INTO chefs (name) VALUES ($1) RETURNING id';
 
             const values = [
-                data.name,
-                data.file_id,
-                date(Date.now()).iso
+                data.name
             ];
 
             return db.query(query, values);
@@ -62,14 +57,10 @@ module.exports = {
     // Atualiza dados do chef
     update(data) {
         try {
-            const query = `UPDATE chefs SET 
-                name = $1, 
-                file_id = $2 
-            WHERE id = $3`;
+            const query = 'UPDATE chefs SET name = $1 WHERE id = $2';
 
             const values = [
                 data.name,
-                data.file_id,
                 data.id
             ];
 
@@ -103,11 +94,25 @@ module.exports = {
     // Encontra imagens do chef
     files(id) {
         try {
-            const query = 'SELECT * FROM files WHERE id = $1';
+            const query = `SELECT files.* FROM files 
+                INNER JOIN chef_files ON chef_files.file_id = files.id
+                WHERE chef_id = $1`;
 
             return db.query(query, [id]);
         } catch (err) {
             console.log(err);
         }
-    }
+    },
+    // Seleciona a imagens do chef
+    filesImageChef(id) {
+        try {
+            const query = `SELECT files.* FROM files 
+                LEFT JOIN chefs ON chefs.file_id = files.id
+                WHERE chef_id = $1`;
+
+            return db.query(query, [id]);
+        } catch (err) {
+            console.log(err);
+        }
+    },
 };

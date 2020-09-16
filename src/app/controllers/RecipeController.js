@@ -36,7 +36,11 @@ module.exports = {
                 page
             }
 
-            return res.render('admin/recipes/index', { recipes, pagination });
+            const { error, success } = req.session;
+            req.session.error = '';
+            req.session.success = '';
+
+            return res.render('admin/recipes/index', { recipes, pagination, error, success });
         } catch (error) {
             console.error();
         }
@@ -48,7 +52,10 @@ module.exports = {
 
             const chefs = results.rows;
 
-            return res.render('admin/recipes/create', { chefs });
+            const { error } = req.session;
+            req.session.error = '';
+
+            return res.render('admin/recipes/create', { chefs, error });
         } catch (error) {
             console.error();
         }
@@ -60,12 +67,18 @@ module.exports = {
 
             for (key of keys) {
                 if ((key != 'information' && key != 'removed_files') && req.body[key] == '') {
-                    return res.send('Preencha todos os campos.');
+                    // return res.send('Preencha todos os campos.');
+
+                    req.session.error = 'Por favor, preencha todos os campos.';
+                    return res.redirect('/admin/recipes/create');
                 }
             }
 
             if (req.files.length == 0) {
-                return res.send('Por favor, envie pelo menos uma imagem.');
+                // return res.send('Por favor, envie pelo menos uma imagem.');
+
+                req.session.error = 'Por favor, envie pelo menos uma imagem.';
+                return res.redirect('/admin/recipes/create');
             }
 
             let ingredients = [];
@@ -109,11 +122,8 @@ module.exports = {
 
             await Promise.all(filesPromise);
 
-            // return res.redirect(`/admin/recipes/${recipe_id}`);
-
-            return res.render('admin/recipes/create', {
-                success: 'Receita criada com sucesso.',
-            });
+            req.session.success = 'Receita criada com sucesso.';
+            return res.redirect(`/admin/recipes/${recipe_id}`);
         } catch (error) {
             console.error();
         }
@@ -138,7 +148,10 @@ module.exports = {
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }));
 
-            return res.render('admin/recipes/show', { recipe, files });
+            const { success } = req.session;
+            req.session.success = '';
+
+            return res.render('admin/recipes/show', { recipe, files, success });
         } catch (error) {
             console.error();
         }
@@ -167,7 +180,10 @@ module.exports = {
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
             }));
 
-            return res.render('admin/recipes/edit', { recipe, chefs, files });
+            const { error } = req.session;
+            req.session.error = '';
+
+            return res.render('admin/recipes/edit', { recipe, chefs, files, error });
         } catch (error) {
             console.error();
         }
@@ -181,7 +197,10 @@ module.exports = {
 
             for (key of keys) {
                 if ((key != 'information' && key != 'removed_files') && req.body[key] == '') {
-                    return res.send('Receita não foi encontrada.');
+                    // return res.send('Receita não foi encontrada.');
+
+                    req.session.error = 'Por favor, preencha todos os campos.';
+                    return res.redirect(`/admin/recipes/${req.body.id}/edit`);
                 }
             }
 
@@ -221,11 +240,8 @@ module.exports = {
 
             await Recipe.update(req.body);
 
-            // return res.redirect(`/admin/recipes/${req.body.id}`);
-
-            return res.render('admin/recipes/edit', {
-                success: 'Receita atualizada com sucesso.',
-            });
+            req.session.success = 'Receita atualizada com sucesso.';
+            return res.redirect(`/admin/recipes/${req.body.id}`);
         } catch (error) {
             console.error();
         }
@@ -252,11 +268,8 @@ module.exports = {
 
             await Recipe.delete(id);
 
-            // return res.redirect(`/admin/recipes`);
-
-            return res.render('admin/recipes/edit', {
-                success: 'Receita deletada com sucesso.',
-            });
+            req.session.success = 'Receita deletada com sucesso.';
+            return res.redirect('/admin/recipes');
         } catch (error) {
             console.error();
         }

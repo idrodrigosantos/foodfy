@@ -16,13 +16,20 @@ module.exports = {
                 ...user,
             }));
 
-            return res.render('admin/users/list', { users });
+            const { error, success } = req.session;
+            req.session.error = '';
+            req.session.success = '';
+
+            return res.render('admin/users/list', { users, error, success });
         } catch (error) {
             console.error(error);
         }
     },
     create(req, res) {
-        return res.render('admin/users/create');
+        const { error } = req.session;
+        req.session.error = '';
+
+        return res.render('admin/users/create', { error });
     },
     async post(req, res) {
         try {
@@ -57,11 +64,8 @@ module.exports = {
             `,
             });
 
-            // return res.redirect('/admin/users');
-
-            return res.render('admin/users/create', {
-                success: 'Conta criada com sucesso.',
-            });
+            req.session.success = 'Conta criada com sucesso.';
+            return res.redirect('/admin/users');
         } catch (error) {
             console.error(error);
         }
@@ -74,7 +78,10 @@ module.exports = {
 
             const user = results.rows[0];
 
-            return res.render('admin/users/edit', { user });
+            const { error } = req.session;
+            req.session.error = '';
+
+            return res.render('admin/users/edit', { user, error });
         } catch (error) {
             console.error(error);
         }
@@ -87,10 +94,8 @@ module.exports = {
 
             await User.updateAdmin(data);
 
-            return res.render('admin/users/edit', {
-                user: req.body,
-                success: 'Conta atualizada com sucesso.',
-            });
+            req.session.success = 'Conta atualizada com sucesso.';
+            return res.redirect('/admin/users');
         } catch (error) {
             console.error(error);
 
@@ -103,9 +108,8 @@ module.exports = {
         try {
             await User.delete(req.body.id);
 
-            return res.render('admin/users/list', {
-                success: 'Conta deletada com sucesso.'
-            });
+            req.session.success = 'Conta deletada com sucesso.';
+            return res.redirect('/admin/users');
         } catch (err) {
             console.error(err);
 
