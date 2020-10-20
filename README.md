@@ -1,5 +1,5 @@
 # Foodfy
-Site de receitas.
+Sistema de receitas culinárias.
 
 ## Softwares necessários
 * Editor de código-fonte
@@ -79,6 +79,8 @@ Senha: 123
 * JavaScript
 * Node.js
 * PostgreSQL
+* Nunjucks
+* Express.js
 
 ## Dependências
 * [bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
