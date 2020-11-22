@@ -10,7 +10,7 @@ Sistema de receitas culinárias.
 ## Instalação
 ```bash
 # Clone o repositório
-$ git clone https://github.com/imsantosrodrigo/foodfy.git
+$ git clone https://github.com/idrodrigosantos/foodfy.git
 
 # Acesse o diretório
 $ cd foodfy
